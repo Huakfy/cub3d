@@ -3,7 +3,8 @@ SRCS	=	ft_atoi ft_bzero ft_calloc ft_isalnum ft_isalpha ft_isascii \
 			ft_strchr ft_strlen ft_strnstr ft_strrchr ft_tolower ft_toupper \
 			ft_memcpy ft_strdup ft_strlcat ft_strlcpy ft_strncmp ft_substr \
 			ft_putnbr_fd ft_strjoin ft_strtrim ft_putchar_fd ft_putnbr_fd \
-			ft_putstr_fd ft_putendl_fd ft_itoa ft_split ft_striteri ft_strmapi get_next_line get_next_line_utils
+			ft_putstr_fd ft_putendl_fd ft_itoa ft_split ft_striteri ft_strmapi \
+			get_next_line get_next_line_utils ft_strcmp
 
 BONUS	=	ft_lstnew.c ft_lstsize.c ft_lstmap.c ft_lstlast.c ft_lstiter.c ft_lstdelone.c \
 			ft_lstclear.c ft_lstadd_front.c ft_lstadd_back.c $(SRCS)
@@ -15,7 +16,7 @@ NAME = libft.a
 OBJ_DIR = obj/
 SRC_DIR = src/
 
-INCLUDES = -I 
+INCLUDES = -I
 
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRCS)))
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCS)))
