@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/23 15:10:33 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/23 15:34:24 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ int	parsing(t_cub3D *data, int argc, char **argv)
 		return (print_err(__FILE__, __LINE__, __func__, FNAME_FORMAT));
 	if (read_file(argv[1], data))
 		return (1);
-	printf("%s\n", data->map);
-	free(data->map);
 	return (0);
 }
 
@@ -100,7 +98,9 @@ int	main(int argc, char **argv)
 {
 	t_cub3D	data;
 
-	if (!parsing(&data, argc, argv))
+	if (parsing(&data, argc, argv))
 		return (1);
+	printf("%s\n",data.map);
+	free(data.map);
 	return (0);
 }
