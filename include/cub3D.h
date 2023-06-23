@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/23 14:47:47 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/23 15:47:17 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 typedef struct s_cub3D
 {
 	char	*map;
+	char	*textures[6]; // NO SO WE EA F C
 }	t_cub3D;
 
 #endif
