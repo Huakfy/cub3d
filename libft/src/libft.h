@@ -17,7 +17,7 @@
 // # include <bsd/string.h>
 # include <stdio.h>
 # include <unistd.h>
-// # include "get_next_line.h"
+# include "get_next_line.h"
 
 int		ft_atoi(const char *nptr);
 void	*ft_bzero(void *s, size_t n);
