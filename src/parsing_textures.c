@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:16:10 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/23 21:11:08 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/23 22:00:05 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static int	fname(t_cub3D *data, int *i, int skip, int text)
 	return (0);
 }
 
-//Get each texture path
+//Get each texture path (Fuck la norme)
 int	get_texture_paths(t_cub3D *data)
 {
 	int	i;
@@ -104,20 +104,19 @@ int	get_texture_paths(t_cub3D *data)
 	i = 0;
 	while (data->map[i])
 	{
-		if (!ft_strncmp(data->map + i, "NO ", 3) && fname(data, &i, 3, 0))
+		if ((!ft_strncmp(data->map + i, "NO ", 3) && fname(data, &i, 3, 0)) ||\
+		 (!ft_strncmp(data->map + i, "SO ", 3) && fname(data, &i, 3, 1)) ||\
+		 (!ft_strncmp(data->map + i, "WE ", 3) && fname(data, &i, 3, 2)) ||\
+		 (!ft_strncmp(data->map + i, "EA ", 3) && fname(data, &i, 3, 3)) ||\
+		 (!ft_strncmp(data->map + i, "F ", 2) && fname(data, &i, 2, 4)) ||\
+		 (!ft_strncmp(data->map + i, "C ", 2) && fname(data, &i, 2, 5)))
 				return (1);
-		else if (!ft_strncmp(data->map + i, "SO ", 3) && fname(data, &i, 3, 1))
-			return (1);
-		else if (!ft_strncmp(data->map + i, "WE ", 3) && fname(data, &i, 3, 2))
-			return (1);
-		else if (!ft_strncmp(data->map + i, "EA ", 3) && fname(data, &i, 3, 3))
-			return (1);
-		else if (!ft_strncmp(data->map + i, "F ", 2) && fname(data, &i, 2, 4))
-			return (1);
-		else if (!ft_strncmp(data->map + i, "C ", 2) && fname(data, &i, 2, 5))
-			return (1);
 		else if (data->map[i])
 			i++;
+		if (!data->txt_end && data->textures[0] && data->textures[1] && \
+		data->textures[2] && data->textures[3] && data->textures[4] && \
+		data->textures[5])
+			data->txt_end = i;
 	}
 	i = -1;
 	while (++i < 6)

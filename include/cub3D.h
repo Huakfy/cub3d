@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/23 20:59:30 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/23 21:59:47 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define MALLOC "Malloc failed"
 # define DOUBLE_TXT "Same texture appears twice in map"
 # define MISS_TXT "Texture(s) missing"
+# define INVALID_CHAR "Invalid character(s) in map"
 
 //Colors
 # define DEF		"\033[0;39m"
@@ -49,6 +50,7 @@ typedef struct s_cub3D
 	char	*map;
 	char	*textures[6]; // NO SO WE EA F C
 	int		txt_end;
+	int		len_line;
 }	t_cub3D;
 
 //PARSING
@@ -57,7 +59,7 @@ int	wrong_filename(char *filename);
 int	read_file(char *filename, t_cub3D *data);
 int	get_texture_paths(t_cub3D *data);
 //parsing_map.c
-int	parsing_map(t_cub3D data);
+int	parsing_map(t_cub3D *data);
 
 //UTILS
 //

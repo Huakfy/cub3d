@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/23 20:45:18 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/23 21:25:28 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	parsing(t_cub3D *data, int argc, char **argv)
 	if (read_file(argv[1], data))
 		return (1);
 	if (get_texture_paths(data))
+		return (1);
+	if (parsing_map(data))
 		return (1);
 	return (0);
 }
