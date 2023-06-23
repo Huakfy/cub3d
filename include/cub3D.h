@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/23 19:59:35 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/23 20:59:30 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,22 @@ typedef struct s_cub3D
 {
 	char	*map;
 	char	*textures[6]; // NO SO WE EA F C
+	int		txt_end;
 }	t_cub3D;
+
+//PARSING
+//parsing_textures.c
+int	wrong_filename(char *filename);
+int	read_file(char *filename, t_cub3D *data);
+int	get_texture_paths(t_cub3D *data);
+//parsing_map.c
+int	parsing_map(t_cub3D data);
+
+//UTILS
+//
+int	print_err(char *fi, int li, const char *fu, char *str);
+//data_utils.c
+void	init_data(t_cub3D *data);
+int	free_all(t_cub3D *data, int ret);
 
 #endif
