@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/24 13:43:09 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/24 13:53:18 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	print_err(char *fi, int li, const char *fu, char *str)
 
 //X Check if textures files exist or color exist
 //Sauf pour la map elle-même, les informations de chaque élément peuvent être séparées par un ou plusieurs espace(s) space or is space ?
+//^Ignore isspace in textures^
 int	parsing(t_cub3D *data, int argc, char **argv)
 {
 	if (argc != 2)
