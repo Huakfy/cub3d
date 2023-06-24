@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/24 10:46:56 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/24 12:09:51 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # define INVALID_CHAR "Invalid character(s) in map"
 # define INVALID_SIZE "Invalid size map"
 # define NEW_LINE "New line in map"
+# define VERT_UNCLOSED "Invalid character on vertical broder"
+# define HORZ_UNCLOSED "Invalid character on horizontal broder"
+# define UNCLOSED "Unclosed map"
 
 //Colors
 # define DEF		"\033[0;39m"
@@ -71,5 +74,9 @@ int	print_err(char *fi, int li, const char *fu, char *str);
 //data_utils.c
 void	init_data(t_cub3D *data);
 int	free_all(t_cub3D *data, int ret);
+//convert_pos_x_y.c
+int	pos_to_x(int pos, int row_len);
+int	pos_to_y(int pos, int row_len);
+int	coord_to_pos(int x, int y, int row_len);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:47:08 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/24 11:34:48 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/24 12:22:08 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	invalid_char(t_cub3D *data)
 	return (0);
 }
 
-void	size_map(t_cub3D *data)
+int	size_map(t_cub3D *data)
 {
 	int	i;
 	int	j;
@@ -55,19 +55,12 @@ void	size_map(t_cub3D *data)
 			i++;
 	}
 	data->nb_line ++;
-}
-
-void	debug(t_cub3D *data)//debug
-{
-	int	i = 0;
-	while (data->map[i])
-	{
-		if (i && i % data->nb_col == 0)
-			printf("\n");
-		printf("%c", data->map[i]);
-		i++;
-	}
-	printf("\n");
+	if (data->nb_line < 3 || data->nb_col < 3)
+		return (print_err(__FILE__, __LINE__, __func__, INVALID_SIZE));
+	data->map = malloc(sizeof(char) * ((data->nb_col * data->nb_line) + 1));
+	if (!data->map)
+		return (print_err(__FILE__, __LINE__, __func__, MALLOC));
+	return (0);
 }
 
 int	get_map(t_cub3D *data)
@@ -98,18 +91,71 @@ int	get_map(t_cub3D *data)
 	return (0);
 }
 
+int	check_around(t_cub3D *data, int i)
+{
+	int	x;
+	int	y;
+
+	x = pos_to_x(i, data->nb_col);
+	y = pos_to_y(i, data->nb_col);
+
+	if (!ft_strchr("01NSWE", data->map[coord_to_pos(x - 1, y, data->nb_col)]))
+		return (1);
+	if (!ft_strchr("01NSWE", data->map[coord_to_pos(x + 1, y, data->nb_col)]))
+		return (1);
+	if (!ft_strchr("01NSWE", data->map[coord_to_pos(x, y - 1, data->nb_col)]))
+		return (1);
+	if (!ft_strchr("01NSWE", data->map[coord_to_pos(x, y + 1, data->nb_col)]))
+		return (1);
+	return (0);
+}
+
+int	closed_map(t_cub3D *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->map[i])
+	{
+		if ((pos_to_x(i, data->nb_col) == 0 || pos_to_x(i, data->nb_col) == \
+		data->nb_col - 1) && data->map[i] != '1' && data->map[i] != ' ')
+			return (print_err(__FILE__, __LINE__, __func__, VERT_UNCLOSED));
+		else if ((pos_to_y(i, data->nb_col) == 0 || pos_to_y(i, data->nb_col) \
+		== data->nb_line - 1) && data->map[i] != '1' && data->map[i] != ' ')
+			return (print_err(__FILE__, __LINE__, __func__, HORZ_UNCLOSED));
+		else if (data->map[i] == '0' && check_around(data, i))
+		{
+			printf("%d\n", i);
+			return (print_err(__FILE__, __LINE__, __func__, UNCLOSED));
+		}
+		i++;
+	}
+	return (0);
+}
+
+//void	debug(t_cub3D *data)//debug
+//{
+//	int	i = 0;
+//	while (data->map[i])
+//	{
+//		if (i && i % data->nb_col == 0)
+//			printf("\n");
+//		printf("%c", data->map[i]);
+//		i++;
+//	}
+//	printf("\n");
+//}
+
 int	parsing_map(t_cub3D *data)
 {
 	if (invalid_char(data))
 		return (1);
-	size_map(data);
-	if (data->nb_line < 3 || data->nb_col < 3)
-		return (print_err(__FILE__, __LINE__, __func__, INVALID_SIZE));
-	data->map = malloc(sizeof(char) * ((data->nb_col * data->nb_line) + 1));
-	if (!data->map)
-		return (print_err(__FILE__, __LINE__, __func__, MALLOC));
+	if (size_map(data))
+		return (1);
 	if (get_map(data))
 		return (1);
-	debug(data);
+	if (closed_map(data))
+		return (1);
+	//debug(data);
 	return (0);
 }
