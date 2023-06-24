@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/24 12:09:51 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/24 13:42:43 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define VERT_UNCLOSED "Invalid character on vertical broder"
 # define HORZ_UNCLOSED "Invalid character on horizontal broder"
 # define UNCLOSED "Unclosed map"
+# define DBL_STRT "Multiple start position"
+# define NO_STRT "No start position"
 
 //Colors
 # define DEF		"\033[0;39m"
@@ -58,6 +60,8 @@ typedef struct s_cub3D
 	int		nb_col;
 	int		nb_line;
 	char	*map;
+	int		start_pos;
+	char	start_dir;
 }	t_cub3D;
 
 //PARSING

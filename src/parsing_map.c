@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:47:08 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/24 12:22:08 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/24 13:42:34 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static int	invalid_char(t_cub3D *data)
 	return (0);
 }
 
+//Gets number og lines and columns and malloc the map
 int	size_map(t_cub3D *data)
 {
 	int	i;
@@ -63,6 +64,7 @@ int	size_map(t_cub3D *data)
 	return (0);
 }
 
+//Get map into data->map
 int	get_map(t_cub3D *data)
 {
 	int	i;
@@ -91,6 +93,7 @@ int	get_map(t_cub3D *data)
 	return (0);
 }
 
+//Checks around 0 or NSWE to see if map is closed
 int	check_around(t_cub3D *data, int i)
 {
 	int	x;
@@ -110,6 +113,8 @@ int	check_around(t_cub3D *data, int i)
 	return (0);
 }
 
+//Checks around 0 or NSWE to see if map is closed
+//Also checks if one and only one start pos
 int	closed_map(t_cub3D *data)
 {
 	int	i;
@@ -123,13 +128,19 @@ int	closed_map(t_cub3D *data)
 		else if ((pos_to_y(i, data->nb_col) == 0 || pos_to_y(i, data->nb_col) \
 		== data->nb_line - 1) && data->map[i] != '1' && data->map[i] != ' ')
 			return (print_err(__FILE__, __LINE__, __func__, HORZ_UNCLOSED));
-		else if (data->map[i] == '0' && check_around(data, i))
-		{
-			printf("%d\n", i);
+		else if ((ft_strchr("0NSWE", data->map[i])) && check_around(data, i))
 			return (print_err(__FILE__, __LINE__, __func__, UNCLOSED));
+		if (ft_strchr("NSWE", data->map[i]))
+		{
+			if (data->start_pos)
+				return (print_err(__FILE__, __LINE__, __func__, DBL_STRT));
+			data->start_pos = i;
+			data->start_dir = data->map[i];
 		}
 		i++;
 	}
+	if (!data->start_pos)
+		return (print_err(__FILE__, __LINE__, __func__, NO_STRT));
 	return (0);
 }
 

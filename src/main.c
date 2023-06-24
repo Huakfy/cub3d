@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/24 12:39:59 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/24 13:43:09 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	print_err(char *fi, int li, const char *fu, char *str)
 //✓ Put map into file, formated in rectangle
 //✓ \n anywhere but not in map
 //✓ Check if map is at end of file (i + 1 = NULL) !!!RIEN APRES LA MAP!!!
+//✓ check only one N || S || W || E
 
 //X Check if textures files exist or color exist
 //Sauf pour la map elle-même, les informations de chaque élément peuvent être séparées par un ou plusieurs espace(s) space or is space ?

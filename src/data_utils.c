@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:45:06 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/24 10:21:17 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/24 13:34:51 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	init_data(t_cub3D *data)
 	data->nb_col = 0;
 	data->nb_line = 0;
 	data->map = NULL;
+	data->start_pos = 0;
+	data->start_dir = 0;
 }
 
 int	free_all(t_cub3D *data, int ret)
