@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:16:10 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/23 22:00:05 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/24 10:19:25 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	len_map(char *filename)
 	return (i - 1);
 }
 
-//Gets file content and put it in data->map
+//Gets file content and put it in data->file
 int	read_file(char *filename, t_cub3D *data) //revoir si stdin
 {
 	int	len;
@@ -64,15 +64,15 @@ int	read_file(char *filename, t_cub3D *data) //revoir si stdin
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (print_err(__FILE__, __LINE__, __func__, OPEN));
-	data->map = malloc(sizeof(char) * (len + 1));
-	if (!data->map)
+	data->file = malloc(sizeof(char) * (len + 1));
+	if (!data->file)
 		return (print_err(__FILE__, __LINE__, __func__, MALLOC));
-	if (read(fd, data->map, len) == -1)
+	if (read(fd, data->file, len) == -1)
 		return (print_err(__FILE__, __LINE__, __func__, READ));
-	data->map[len] = '\0';
+	data->file[len] = '\0';
 	if (close(fd) == -1)
 	{
-		free(data->map);
+		free(data->file);
 		return (print_err(__FILE__, __LINE__, __func__, CLOSE));
 	}
 	return (0);
@@ -87,9 +87,9 @@ static int	fname(t_cub3D *data, int *i, int skip, int text)
 	if (data->textures[text])
 		return (print_err(__FILE__, __LINE__, __func__, DOUBLE_TXT));
 	j = 0;
-	while (data->map[*i + j + skip] && data->map[*i + j + skip] != '\n')
+	while (data->file[*i + j + skip] && data->file[*i + j + skip] != '\n')
 		j++;
-	data->textures[text] = ft_substr(data->map, *i + skip, j);
+	data->textures[text] = ft_substr(data->file, *i + skip, j);
 	if (!data->textures[text])
 		return (print_err(__FILE__, __LINE__, __func__, MALLOC));
 	*i += j + skip;
@@ -102,16 +102,16 @@ int	get_texture_paths(t_cub3D *data)
 	int	i;
 
 	i = 0;
-	while (data->map[i])
+	while (data->file[i])
 	{
-		if ((!ft_strncmp(data->map + i, "NO ", 3) && fname(data, &i, 3, 0)) ||\
-		 (!ft_strncmp(data->map + i, "SO ", 3) && fname(data, &i, 3, 1)) ||\
-		 (!ft_strncmp(data->map + i, "WE ", 3) && fname(data, &i, 3, 2)) ||\
-		 (!ft_strncmp(data->map + i, "EA ", 3) && fname(data, &i, 3, 3)) ||\
-		 (!ft_strncmp(data->map + i, "F ", 2) && fname(data, &i, 2, 4)) ||\
-		 (!ft_strncmp(data->map + i, "C ", 2) && fname(data, &i, 2, 5)))
+		if ((!ft_strncmp(data->file + i, "NO ", 3) && fname(data, &i, 3, 0)) \
+		|| (!ft_strncmp(data->file + i, "SO ", 3) && fname(data, &i, 3, 1)) ||\
+		 (!ft_strncmp(data->file + i, "WE ", 3) && fname(data, &i, 3, 2)) ||\
+		 (!ft_strncmp(data->file + i, "EA ", 3) && fname(data, &i, 3, 3)) ||\
+		 (!ft_strncmp(data->file + i, "F ", 2) && fname(data, &i, 2, 4)) ||\
+		 (!ft_strncmp(data->file + i, "C ", 2) && fname(data, &i, 2, 5)))
 				return (1);
-		else if (data->map[i])
+		else if (data->file[i])
 			i++;
 		if (!data->txt_end && data->textures[0] && data->textures[1] && \
 		data->textures[2] && data->textures[3] && data->textures[4] && \

@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/23 21:59:47 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/24 10:46:56 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define DOUBLE_TXT "Same texture appears twice in map"
 # define MISS_TXT "Texture(s) missing"
 # define INVALID_CHAR "Invalid character(s) in map"
+# define INVALID_SIZE "Invalid size map"
+# define NEW_LINE "New line in map"
 
 //Colors
 # define DEF		"\033[0;39m"
@@ -47,10 +49,12 @@
 
 typedef struct s_cub3D
 {
-	char	*map;
+	char	*file;
 	char	*textures[6]; // NO SO WE EA F C
 	int		txt_end;
-	int		len_line;
+	int		nb_col;
+	int		nb_line;
+	char	*map;
 }	t_cub3D;
 
 //PARSING

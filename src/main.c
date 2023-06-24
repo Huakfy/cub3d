@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/23 21:25:28 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/24 10:44:40 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ int	print_err(char *fi, int li, const char *fu, char *str)
 //✓ Check if filename ends in ."cub"
 //✓ Read file and put into string !!!(Maybe comeback to it for stdin)!!!
 //✓ Check if one and only one texture for each type
+//✓ Check if only valid characters in map 0 1 N S E W space
 
-//X Check if map is at end of file (i + 1 = NULL)
+//X Check if map is at end of file (i + 1 = NULL) !!!RIEN APRES LA MAP!!!
 //X Check if map is closed
-//X Check if only valid characters in map 0 1 N S E W space
 //X Check if textures files exist or color exist
 //X Put map into file, formated in rectangle
+//X \n anywhere but not in map
+//Sauf pour la map elle-même, les informations de chaque élément peuvent être séparées par un ou plusieurs espace(s) space or is space ?
 int	parsing(t_cub3D *data, int argc, char **argv)
 {
 	if (argc != 2)
@@ -55,7 +57,6 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	if (parsing(&data, argc, argv))
 		return (free_all(&data, 1));
-
 	//debug texture name
 	//int	j = -1;
 	//while (++j < 6)
