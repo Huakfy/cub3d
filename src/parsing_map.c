@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:47:08 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/24 11:30:12 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/24 11:34:48 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,84 +70,30 @@ void	debug(t_cub3D *data)//debug
 	printf("\n");
 }
 
-//int	get_map(t_cub3D *data)
-//{
-//	int	i;
-//	int	j;
-//	int	len;
-
-//	size_map(data);
-//	if (data->nb_line < 3 || data->nb_col < 3)
-//		return (print_err(__FILE__, __LINE__, __func__, INVALID_SIZE));
-//	data->map = malloc(sizeof(char) * ((data->nb_col * data->nb_line) + 1));
-//	if (!data->map)
-//		return (print_err(__FILE__, __LINE__, __func__, MALLOC));
-//	i = data->txt_end;
-//	j = 0;
-//	len = 0;
-//	while (data->file[i])
-//	{
-//		if (data->file[i] == '\n')
-//		{
-//			while (len < data->nb_col)
-//			{
-//				data->map[j] = ' ';
-//				j++;
-//				len++;
-//			}
-//			i++;
-//			len = 0;
-//			continue ;
-//		}
-//		else
-//			data->map[j] = data->file[i];
-//		j++;
-//		i++;
-//		len++;
-//	}
-//	while (len < data->nb_col)
-//	{
-//		data->map[j] = ' ';
-//		j++;
-//		len++;
-//	}
-//	data->map[j] = '\0';
-//	return (0);
-//}
-
 int	get_map(t_cub3D *data)
 {
 	int	i;
 	int	j;
 	int	len;
 
-	data->map = malloc(sizeof(char) * ((data->nb_col * data->nb_line) + 1));
-	if (!data->map)
-		return (print_err(__FILE__, __LINE__, __func__, MALLOC));
 	i = data->txt_end;
 	j = 0;
 	len = 0;
 	while (data->file[i])
 	{
-		if (data->file[i] == '\n')
+		if (data->file[i] == '\n' && i++)
 		{
 			while (len++ < data->nb_col)
 				data->map[j++] = ' ';
-			i++;
 			len = 0;
 			continue ;
 		}
 		else
-			data->map[j++] = data->file[i];
-		i++;
+			data->map[j++] = data->file[i++];
 		len++;
 	}
-	while (len < data->nb_col)
-	{
-		data->map[j] = ' ';
-		j++;
-		len++;
-	}
+	while (len++ < data->nb_col)
+		data->map[j++] = ' ';
 	data->map[j] = '\0';
 	return (0);
 }
@@ -159,6 +105,9 @@ int	parsing_map(t_cub3D *data)
 	size_map(data);
 	if (data->nb_line < 3 || data->nb_col < 3)
 		return (print_err(__FILE__, __LINE__, __func__, INVALID_SIZE));
+	data->map = malloc(sizeof(char) * ((data->nb_col * data->nb_line) + 1));
+	if (!data->map)
+		return (print_err(__FILE__, __LINE__, __func__, MALLOC));
 	if (get_map(data))
 		return (1);
 	debug(data);
