@@ -6,11 +6,11 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:47:08 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 12:12:29 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:31:58 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../../include/cub3D.h"
 
 //Checks if map characters are in "0 1 N S E W space \n"
 int	invalid_char(t_map *data)

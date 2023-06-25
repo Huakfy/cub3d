@@ -6,11 +6,11 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 11:50:52 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/24 11:53:50 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:40:40 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../../include/cub3D.h"
 
 int	pos_to_x(int pos, int nb_col)
 {

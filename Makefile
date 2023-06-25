@@ -28,7 +28,7 @@ $(OBJF) :
 	@mkdir -p $(OBJ_DIR)
 
 # Add the path to the builtin folder to vpath
-vpath %.c $(SRC_DIR)
+vpath %.c $(SRC_DIR) $(SRC_DIR)/parsing $(SRC_DIR)/utils
 
 all : $(NAME)
 

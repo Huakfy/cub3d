@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 12:11:21 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:32:34 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,8 @@
 
 //Colors
 # define DEF		"\033[0;39m"
-//# define GRAY		"\033[0;90m"
 # define RED		"\033[0;91m"
-//# define GREEN		"\033[0;92m"
 # define YELLOW		"\033[0;93m"
-//# define BLUE		"\033[0;94m"
-//# define MAGENTA	"\033[0;95m"
-//# define CYAN		"\033[0;96m"
-//# define WHITE		"\033[0;97m"
 
 //include lib
 # include <stdio.h> //printf
@@ -52,10 +46,11 @@
 //include headers
 # include "../libft/src/libft.h"
 
+//textures: NO SO WE EA F C
 typedef struct s_map
 {
 	char	*file;
-	char	*textures[6]; // NO SO WE EA F C
+	char	*textures[6];
 	int		txt_end;
 	int		nb_col;
 	int		nb_line;
@@ -63,6 +58,24 @@ typedef struct s_map
 	int		start_pos;
 	char	start_dir;
 }	t_map;
+
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
+//textures: NO SO WE EA F C
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	screen;
+	t_img	textures[6];
+}	t_mlx;
 
 //PARSING
 //parsing_textures.c
