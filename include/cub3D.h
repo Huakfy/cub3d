@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 20:07:54 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 21:40:53 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@
 # define UNCLOSED "Unclosed map"
 # define DBL_STRT "Multiple start position"
 # define NO_STRT "No start position"
+# define MLX_INIT "Mlx init failed"
+# define WIN_INIT "Mlx new window failed"
+# define IMG_INIT "Mlx new image failed"
+# define XPM_IMG "Mlx xpm file to image failed"
 
 //Colors
 # define DEF		"\033[0;39m"
@@ -68,11 +72,13 @@ typedef struct s_map
 
 typedef struct s_img
 {
-	void	*mlx_img;
+	void	*img;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		width;
+	int		height;
 }	t_img;
 
 //textures: NO SO WE EA F C
@@ -99,8 +105,8 @@ int		closed_map(t_map *data);
 //
 int		print_err(char *fi, int li, const char *fu, char *str);
 //data_utils.c
-void	init_data(t_map *data);
-int		free_all(t_map *data, int ret);
+void	init_data(t_map *data, t_mlx *mlx);
+int		free_all(t_map *data, t_mlx *mlx, int ret);
 //convert_pos_x_y.c
 int		pos_to_x(int pos, int row_len);
 int		pos_to_y(int pos, int row_len);

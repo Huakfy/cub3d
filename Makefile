@@ -9,7 +9,7 @@ FT_FLAGS =	-Llibft -lft
 PATH_MLX = ./minilibx-linux
 MLX_FLAGS = -Lminilibx-linux -lmlx -lmlx_Linux -lXext -lX11 -lm
 
-LD_FLAGS = $(FT_FLAGS) $(MLX_FLAGS)
+LDFLAGS = $(FT_FLAGS) $(MLX_FLAGS)
 
 SRC_DIR	=	src/
 OBJ_DIR	=	obj/
@@ -35,7 +35,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	@make -C $(DIRLIB)
 	@make -C $(PATH_MLX)
-	$(CC) $(FLAG) $(OBJS) $(LD_FLAGS) $(INCLUDE) -o $(NAME)
+	$(CC) $(FLAG) $(OBJS) $(LDFLAGS) $(INCLUDE) -o $(NAME)
 	@echo "$(GREEN)$(NAME) Compiled!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o : %.c $(HEADER) Makefile | $(OBJF)
