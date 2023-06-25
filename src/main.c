@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 22:04:22 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 22:09:48 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	get_textures(t_map *data, t_mlx *mlx)
 	int	i;
 
 	i = -1;
-	while (i < 4)
+	while (++i < 4)
 	{
 		mlx->textures[i].img = mlx_xpm_file_to_image(mlx->ptr, \
 		data->textures[i], &mlx->textures[i].width, &mlx->textures[i].height);
