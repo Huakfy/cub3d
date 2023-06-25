@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:16:10 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/24 10:19:25 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 11:59:29 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ static int	fname(t_cub3D *data, int *i, int skip, int text)
 
 	if (data->textures[text])
 		return (print_err(__FILE__, __LINE__, __func__, DOUBLE_TXT));
+	while (data->file[*i + skip] && data->file[*i + skip] == ' ')
+		(*i)++;
 	j = 0;
 	while (data->file[*i + j + skip] && data->file[*i + j + skip] != '\n')
 		j++;
@@ -104,12 +106,12 @@ int	get_texture_paths(t_cub3D *data)
 	i = 0;
 	while (data->file[i])
 	{
-		if ((!ft_strncmp(data->file + i, "NO ", 3) && fname(data, &i, 3, 0)) \
-		|| (!ft_strncmp(data->file + i, "SO ", 3) && fname(data, &i, 3, 1)) ||\
-		 (!ft_strncmp(data->file + i, "WE ", 3) && fname(data, &i, 3, 2)) ||\
-		 (!ft_strncmp(data->file + i, "EA ", 3) && fname(data, &i, 3, 3)) ||\
-		 (!ft_strncmp(data->file + i, "F ", 2) && fname(data, &i, 2, 4)) ||\
-		 (!ft_strncmp(data->file + i, "C ", 2) && fname(data, &i, 2, 5)))
+		if ((!ft_strncmp(data->file + i, "NO", 2) && fname(data, &i, 2, 0)) \
+		|| (!ft_strncmp(data->file + i, "SO", 2) && fname(data, &i, 2, 1)) ||\
+		 (!ft_strncmp(data->file + i, "WE", 2) && fname(data, &i, 2, 2)) ||\
+		 (!ft_strncmp(data->file + i, "EA", 2) && fname(data, &i, 2, 3)) ||\
+		 (!ft_strncmp(data->file + i, "F", 1) && fname(data, &i, 1, 4)) ||\
+		 (!ft_strncmp(data->file + i, "C", 1) && fname(data, &i, 1, 5)))
 				return (1);
 		else if (data->file[i])
 			i++;

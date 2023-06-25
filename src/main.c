@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 11:19:07 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:02:51 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,27 @@ int	print_err(char *fi, int li, const char *fu, char *str)
 {
 	if (DEBUG)
 		printf(YELLOW"File: %s | Line: %d | Function: %s\n"DEF, fi, li, fu);
-	printf(RED"Error\n%s\n"DEF, str); //Revoir si print sur STDERR
+	write(2, RED, ft_strlen(RED));
+	write(2, "Error\n", 6);
+	write(2, str, ft_strlen(str));
+	write(2, "\n", 1);
+	write(2, DEF, ft_strlen(DEF));
 	return (1);
 }
 
 //PARSING
 //✓ Check if 1 arg
 //✓ Check if filename ends in ."cub"
-//✓ Read file and put into string !!!(Maybe comeback to it for stdin)!!!
-//✓ Check if one and only one texture for each type
+//✓ Read file and put into string								!!!(Maybe comeback to it for stdin)!!!
+//✓ Check if one and only one texture for each type NO SO WE EA F C (skip spaces not isspace)
 //✓ Check if only valid characters in map 0 1 N S E W space
 //✓ Check if map is closed
 //✓ Put map into file, formated in rectangle
-//✓ \n anywhere but not in map
-//✓ Check if map is at end of file (i + 1 = NULL) !!!RIEN APRES LA MAP!!!
+//✓ \n anywhere but not in map (checks if \n after \n)
+//✓ Check if map is at end of file (i + 1 = NULL)
 //✓ check only one N || S || W || E
 
 //X Check if textures files exist or color exist
-//Sauf pour la map elle-même, les informations de chaque élément peuvent être séparées par un ou plusieurs espace(s) space or is space ?
-//^Ignore isspace in textures^
 int	parsing(t_cub3D *data, int argc, char **argv)
 {
 	if (argc != 2)
@@ -55,6 +57,9 @@ int	parsing(t_cub3D *data, int argc, char **argv)
 		return (1);
 	if (closed_map(data))
 		return (1);
+	int i = -1;
+	while (++i < 6)
+		printf("%s\n", data->textures[i]);
 	return (0);
 }
 
