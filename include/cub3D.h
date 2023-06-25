@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 11:22:40 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:11:21 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 //include headers
 # include "../libft/src/libft.h"
 
-typedef struct s_cub3D
+typedef struct s_map
 {
 	char	*file;
 	char	*textures[6]; // NO SO WE EA F C
@@ -62,25 +62,25 @@ typedef struct s_cub3D
 	char	*map;
 	int		start_pos;
 	char	start_dir;
-}	t_cub3D;
+}	t_map;
 
 //PARSING
 //parsing_textures.c
 int		wrong_filename(char *filename);
-int		read_file(char *filename, t_cub3D *data);
-int		get_texture_paths(t_cub3D *data);
+int		read_file(char *filename, t_map *data);
+int		get_texture_paths(t_map *data);
 //parsing_map.c
-int		invalid_char(t_cub3D *data);
-int		size_map(t_cub3D *data);
-int		get_map(t_cub3D *data);
-int		closed_map(t_cub3D *data);
+int		invalid_char(t_map *data);
+int		size_map(t_map *data);
+int		get_map(t_map *data);
+int		closed_map(t_map *data);
 
 //UTILS
 //
 int		print_err(char *fi, int li, const char *fu, char *str);
 //data_utils.c
-void	init_data(t_cub3D *data);
-int		free_all(t_cub3D *data, int ret);
+void	init_data(t_map *data);
+int		free_all(t_map *data, int ret);
 //convert_pos_x_y.c
 int		pos_to_x(int pos, int row_len);
 int		pos_to_y(int pos, int row_len);

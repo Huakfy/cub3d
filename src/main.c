@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 12:05:45 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:11:21 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	print_err(char *fi, int li, const char *fu, char *str)
 //✓ check only one N || S || W || E
 
 //X Check if textures files exist or color exist
-int	parsing(t_cub3D *data, int argc, char **argv)
+int	parsing(t_map *data, int argc, char **argv)
 {
 	if (argc != 2)
 		return (print_err(__FILE__, __LINE__, __func__, ARG_NBR));
@@ -54,7 +54,7 @@ int	parsing(t_cub3D *data, int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_cub3D	data;
+	t_map	data;
 
 	init_data(&data);
 	if (parsing(&data, argc, argv))

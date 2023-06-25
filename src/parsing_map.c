@@ -6,14 +6,14 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:47:08 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 12:07:36 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:12:29 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
 //Checks if map characters are in "0 1 N S E W space \n"
-int	invalid_char(t_cub3D *data)
+int	invalid_char(t_map *data)
 {
 	int	i;
 
@@ -28,7 +28,8 @@ int	invalid_char(t_cub3D *data)
 		'N' && data->file[i] != 'S' && data->file[i] != 'E' && data->file[i] \
 		!= 'W' && data->file[i] != ' ' && data->file[i] != '\n')
 			return (print_err(__FILE__, __LINE__, __func__, INVALID_CHAR));
-		if (data->file[i] && data->file[i] == '\n' && data->file[i - 1] == '\n')
+		if (data->file[i] && data->file[i] == '\n' && data->file[i - 1] == \
+		'\n')
 			return (print_err(__FILE__, __LINE__, __func__, NEW_LINE));
 		i++;
 	}
@@ -36,7 +37,7 @@ int	invalid_char(t_cub3D *data)
 }
 
 //Gets number og lines and columns and malloc the map
-int	size_map(t_cub3D *data)
+int	size_map(t_map *data)
 {
 	int	i;
 	int	j;
@@ -65,7 +66,7 @@ int	size_map(t_cub3D *data)
 }
 
 //Get map into data->map
-int	get_map(t_cub3D *data)
+int	get_map(t_map *data)
 {
 	int	i;
 	int	j;
@@ -94,7 +95,7 @@ int	get_map(t_cub3D *data)
 }
 
 //Checks around 0 or NSWE to see if map is closed
-static int	check_around(t_cub3D *data, int i)
+static int	check_around(t_map *data, int i)
 {
 	int	x;
 	int	y;
@@ -115,7 +116,7 @@ static int	check_around(t_cub3D *data, int i)
 
 //Checks around 0 or NSWE to see if map is closed
 //Also checks if one and only one start pos
-int	closed_map(t_cub3D *data)
+int	closed_map(t_map *data)
 {
 	int	i;
 

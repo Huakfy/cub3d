@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:16:10 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 12:06:29 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:11:21 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	len_map(char *filename) //revoir si stdin
 }
 
 //Gets file content and put it in data->file
-int	read_file(char *filename, t_cub3D *data) //revoir si stdin
+int	read_file(char *filename, t_map *data) //revoir si stdin
 {
 	int	len;
 	int	fd;
@@ -80,7 +80,7 @@ int	read_file(char *filename, t_cub3D *data) //revoir si stdin
 
 //Puts filename in the right data->texture
 //only called in get_texture_paths so static
-static int	fname(t_cub3D *data, int *i, int skip, int text)
+static int	fname(t_map *data, int *i, int skip, int text)
 {
 	int	j;
 
@@ -99,7 +99,7 @@ static int	fname(t_cub3D *data, int *i, int skip, int text)
 }
 
 //Get each texture path (Fuck la norme)
-int	get_texture_paths(t_cub3D *data)
+int	get_texture_paths(t_map *data)
 {
 	int	i;
 

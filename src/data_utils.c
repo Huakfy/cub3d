@@ -6,13 +6,13 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:45:06 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/24 13:34:51 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:11:21 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	init_data(t_cub3D *data)
+void	init_data(t_map *data)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ void	init_data(t_cub3D *data)
 	data->start_dir = 0;
 }
 
-int	free_all(t_cub3D *data, int ret)
+int	free_all(t_map *data, int ret)
 {
 	int	i;
 
