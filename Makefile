@@ -1,20 +1,20 @@
 NAME	=	cub3D
 
 CC		=	cc
-#FLAG	=	-Wall -Wextra -Werror -g3 -Lmlx -lmlx -lXext -lX11 -lm
-FLAG	=	-Wall -Wextra -Werror -g3 -Lmlx -lXext -lX11 -lm
+FLAG	=	-Wall -Wextra -Werror -g3
 
 DIRLIB	=	./libft/
-FILELIB	=	libft.a
-NAMELFT	=	$(addprefix $(DIRLIB), $(FILELIB))
+FT_FLAGS =	-Llibft -lft
 
+PATH_MLX = ./minilibx-linux
+MLX_FLAGS = -Lminilibx-linux -lmlx -lmlx_Linux -lXext -lX11 -lm
 
-PATH_MLX = minilibx-linux
+LD_FLAGS = $(FT_FLAGS) $(MLX_FLAGS)
 
 SRC_DIR	=	src/
 OBJ_DIR	=	obj/
-INCLUDE	=	-I ./include -I ./libft -I $(PATH_MLX)
-HEADER 	=	include/cub3D.h
+INCLUDE	=	-I ./include -I ./libft/src -I $(PATH_MLX)
+HEADER	=	include/cub3D.h
 
 # Source
 FILES	=	main parsing_textures data_utils parsing_map convert_pos_x_y
@@ -35,7 +35,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	@make -C $(DIRLIB)
 	@make -C $(PATH_MLX)
-	$(CC) $(FLAG) $(OBJS) $(NAMELFT) $(INCLUDE) -o $(NAME)
+	$(CC) $(FLAG) $(OBJS) $(LD_FLAGS) $(INCLUDE) -o $(NAME)
 	@echo "$(GREEN)$(NAME) Compiled!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o : %.c $(HEADER) Makefile | $(OBJF)

@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 12:32:34 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 20:07:54 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,19 @@
 # define RED		"\033[0;91m"
 # define YELLOW		"\033[0;93m"
 
+//Mlx
+# define WIDTH 2560
+# define HEIGHT 1440
+# define NAME "cub3D"
+
 //include lib
 # include <stdio.h> //printf
 # include <fcntl.h> //open
 
 //include headers
-# include "../libft/src/libft.h"
+//# include "../libft/src/libft.h" //libft
+# include "libft.h" //libft
+# include "mlx.h" //mlx
 
 //textures: NO SO WE EA F C
 typedef struct s_map
@@ -71,8 +78,8 @@ typedef struct s_img
 //textures: NO SO WE EA F C
 typedef struct s_mlx
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*ptr;
+	void	*win;
 	t_img	screen;
 	t_img	textures[6];
 }	t_mlx;
