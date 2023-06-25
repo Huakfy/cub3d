@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:45:06 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 22:04:34 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 00:21:52 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,15 @@ void	init_data(t_map *data, t_mlx *mlx)
 	mlx->screen.width = 0;
 	mlx->screen.height = 0;
 	i = -1;
-	while (++i < 6)
+	while (++i < 4)
 	{
 		mlx->textures[i].img = NULL;
 		mlx->textures[i].addr = NULL;
 		mlx->screen.width = 0;
 		mlx->screen.height = 0;
 	}
+	mlx->FC[0] = 0;
+	mlx->FC[1] = 0;
 }
 
 int	free_all(t_map *data, t_mlx *mlx, int ret)

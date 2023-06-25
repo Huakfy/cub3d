@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 21:40:53 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 00:49:19 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define WIN_INIT "Mlx new window failed"
 # define IMG_INIT "Mlx new image failed"
 # define XPM_IMG "Mlx xpm file to image failed"
+# define FLCE "Wrong format for floor or ceiling expected (0,0,0 to 255,255,255)"
 
 //Colors
 # define DEF		"\033[0;39m"
@@ -87,7 +88,8 @@ typedef struct s_mlx
 	void	*ptr;
 	void	*win;
 	t_img	screen;
-	t_img	textures[6];
+	t_img	textures[4];
+	int		FC[2];
 }	t_mlx;
 
 //PARSING
@@ -100,6 +102,9 @@ int		invalid_char(t_map *data);
 int		size_map(t_map *data);
 int		get_map(t_map *data);
 int		closed_map(t_map *data);
+//parsing_mlx.c
+int		get_textures(t_map *data, t_mlx *mlx);
+int		init_mlx(t_mlx *mlx);
 
 //UTILS
 //
