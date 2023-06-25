@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:47:08 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 11:22:32 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:07:36 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	invalid_char(t_cub3D *data)
 	data->txt_end = i;
 	while (data->file[i])
 	{
-		if (data->file[i] != '0' && data->file[i] != '1' && data->file[i] != 'N' \
-		&& data->file[i] != 'S' && data->file[i] != 'E' && data->file[i] != 'W' \
-		&& data->file[i] != ' ' && data->file[i] != '\n')
+		if (data->file[i] != '0' && data->file[i] != '1' && data->file[i] != \
+		'N' && data->file[i] != 'S' && data->file[i] != 'E' && data->file[i] \
+		!= 'W' && data->file[i] != ' ' && data->file[i] != '\n')
 			return (print_err(__FILE__, __LINE__, __func__, INVALID_CHAR));
 		if (data->file[i] && data->file[i] == '\n' && data->file[i - 1] == '\n')
 			return (print_err(__FILE__, __LINE__, __func__, NEW_LINE));

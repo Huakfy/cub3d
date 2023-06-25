@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:16:10 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 11:59:29 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:06:29 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	wrong_filename(char *filename)
 	while (filename[i])
 		i++;
 	if (ft_strcmp(filename + (i - 4), ".cub"))
-		return (1);
+		return (print_err(__FILE__, __LINE__, __func__, FNAME_FORMAT));
 	return (0);
 }
 
 //Goes 1 by 1 char throug the file to get its length
-static int	len_map(char *filename)
+static int	len_map(char *filename) //revoir si stdin
 {
 	int		i;
 	int		fd;

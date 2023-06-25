@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 12:02:51 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:05:45 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,12 @@ int	parsing(t_cub3D *data, int argc, char **argv)
 {
 	if (argc != 2)
 		return (print_err(__FILE__, __LINE__, __func__, ARG_NBR));
-	if (wrong_filename(argv[1]))
-		return (print_err(__FILE__, __LINE__, __func__, FNAME_FORMAT));
-	if (read_file(argv[1], data))
+	if (wrong_filename(argv[1]) || read_file(argv[1], data))
 		return (1);
-	if (get_texture_paths(data))
+	if (get_texture_paths(data) || invalid_char(data) || size_map(data))
 		return (1);
-	if (invalid_char(data))
+	if (get_map(data) || closed_map(data))
 		return (1);
-	if (size_map(data))
-		return (1);
-	if (get_map(data))
-		return (1);
-	if (closed_map(data))
-		return (1);
-	int i = -1;
-	while (++i < 6)
-		printf("%s\n", data->textures[i]);
 	return (0);
 }
 
@@ -70,10 +59,5 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	if (parsing(&data, argc, argv))
 		return (free_all(&data, 1));
-	//debug texture name
-	//int	j = -1;
-	//while (++j < 6)
-	//	if (data.textures[j])
-	//		printf("%s\n", data.textures[j]);
 	free_all(&data, 0);
 }
