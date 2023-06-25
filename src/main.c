@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 22:09:48 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 22:47:00 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ int	get_textures(t_map *data, t_mlx *mlx)
 		data->textures[i], &mlx->textures[i].width, &mlx->textures[i].height);
 		if (!mlx->textures[i].img)
 			return (print_err(__FILE__, __LINE__, __func__, XPM_IMG));
+		mlx->textures[i].addr = mlx_get_data_addr(mlx->textures[i].img, \
+		&mlx->textures[i].bpp, &mlx->textures[i].line_len, \
+		&mlx->textures[i].endian);
 	}
 	return (0);
 }
