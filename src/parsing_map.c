@@ -6,14 +6,14 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:47:08 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/24 13:42:34 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 11:22:32 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
 //Checks if map characters are in "0 1 N S E W space \n"
-static int	invalid_char(t_cub3D *data)
+int	invalid_char(t_cub3D *data)
 {
 	int	i;
 
@@ -94,7 +94,7 @@ int	get_map(t_cub3D *data)
 }
 
 //Checks around 0 or NSWE to see if map is closed
-int	check_around(t_cub3D *data, int i)
+static int	check_around(t_cub3D *data, int i)
 {
 	int	x;
 	int	y;
@@ -144,29 +144,3 @@ int	closed_map(t_cub3D *data)
 	return (0);
 }
 
-//void	debug(t_cub3D *data)//debug
-//{
-//	int	i = 0;
-//	while (data->map[i])
-//	{
-//		if (i && i % data->nb_col == 0)
-//			printf("\n");
-//		printf("%c", data->map[i]);
-//		i++;
-//	}
-//	printf("\n");
-//}
-
-int	parsing_map(t_cub3D *data)
-{
-	if (invalid_char(data))
-		return (1);
-	if (size_map(data))
-		return (1);
-	if (get_map(data))
-		return (1);
-	if (closed_map(data))
-		return (1);
-	//debug(data);
-	return (0);
-}

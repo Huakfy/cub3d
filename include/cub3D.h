@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/24 13:42:43 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/25 11:22:40 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,24 @@ typedef struct s_cub3D
 
 //PARSING
 //parsing_textures.c
-int	wrong_filename(char *filename);
-int	read_file(char *filename, t_cub3D *data);
-int	get_texture_paths(t_cub3D *data);
+int		wrong_filename(char *filename);
+int		read_file(char *filename, t_cub3D *data);
+int		get_texture_paths(t_cub3D *data);
 //parsing_map.c
-int	parsing_map(t_cub3D *data);
+int		invalid_char(t_cub3D *data);
+int		size_map(t_cub3D *data);
+int		get_map(t_cub3D *data);
+int		closed_map(t_cub3D *data);
 
 //UTILS
 //
-int	print_err(char *fi, int li, const char *fu, char *str);
+int		print_err(char *fi, int li, const char *fu, char *str);
 //data_utils.c
 void	init_data(t_cub3D *data);
-int	free_all(t_cub3D *data, int ret);
+int		free_all(t_cub3D *data, int ret);
 //convert_pos_x_y.c
-int	pos_to_x(int pos, int row_len);
-int	pos_to_y(int pos, int row_len);
-int	coord_to_pos(int x, int y, int row_len);
+int		pos_to_x(int pos, int row_len);
+int		pos_to_y(int pos, int row_len);
+int		coord_to_pos(int x, int y, int row_len);
 
 #endif
