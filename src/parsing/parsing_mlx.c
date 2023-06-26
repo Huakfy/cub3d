@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 00:47:43 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 00:48:11 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 09:30:35 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,6 @@ int	get_textures(t_map *data, t_mlx *mlx)
 //Init mlx utils
 int	init_mlx(t_mlx *mlx)
 {
-	mlx->ptr = mlx_init();
-	if (!mlx->ptr)
-		return (print_err(__FILE__, __LINE__, __func__, MLX_INIT));
 	mlx->win = mlx_new_window(mlx->ptr, WIDTH, HEIGHT, NAME);
 	if (!mlx->win)
 		return (print_err(__FILE__, __LINE__, __func__, WIN_INIT));
