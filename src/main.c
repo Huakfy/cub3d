@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 09:19:02 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 09:23:39 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	main(int argc, char **argv)
 	t_map	data;
 	t_mlx	mlx;
 
-	init_data(&data, &mlx);
+	init_all(&data, &mlx);
 	if (parsing(&data, argc, argv, &mlx))
 		return (free_all(&data, &mlx, 1));
 	free_all(&data, &mlx, 0);

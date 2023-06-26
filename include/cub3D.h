@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 00:49:19 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 09:23:45 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int		init_mlx(t_mlx *mlx);
 //
 int		print_err(char *fi, int li, const char *fu, char *str);
 //data_utils.c
-void	init_data(t_map *data, t_mlx *mlx);
+void	init_all(t_map *data, t_mlx *mlx);
 int		free_all(t_map *data, t_mlx *mlx, int ret);
 //convert_pos_x_y.c
 int		pos_to_x(int pos, int row_len);
