@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 09:58:47 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 11:01:35 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ int		init_mlx(t_mlx *mlx);
 int		constant_loop(t_mlx *mlx);
 int		handle_keypress(int keysym, t_mlx *mlx);
 int		cross_press(t_mlx *mlx);
+//
+void	img_pix_put(t_img *img, int x, int y, unsigned int color);
 
 //UTILS
 //

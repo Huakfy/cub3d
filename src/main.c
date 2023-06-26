@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 10:35:37 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 11:01:31 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,37 @@ int	print_err(char *fi, int li, const char *fu, char *str)
 	return (1);
 }
 
-//PARSING
-//✓ Check if 1 arg
-//✓ Check if filename ends in ."cub"
-//✓ Read file and put into string								!!!(Maybe comeback to it for stdin)!!!
-//✓ Check if one and only one texture for each type NO SO WE EA F C (skip spaces not isspace)
-//✓ Check if only valid characters in map 0 1 N S E W space
-//✓ Check if map is closed
-//✓ Put map into file, formated in rectangle
-//✓ \n anywhere but not in map (checks if \n after \n)
-//✓ Check if map is at end of file (i + 1 = NULL)
-//✓ check only one N || S || W || E
-//✓ Check if textures files exist or color exist
+void	img_pix_put(t_img *img, int x, int y, unsigned int color)
+{
+	char	*ptr;
+
+	if (color != 4278190080) // transparence (inutile ?)
+	{
+		ptr = img->addr + (y * img->line_len + x * (img->bpp / 8));
+		*(unsigned int *)ptr = color;
+	}
+}
+
+unsigned int	get_color(t_img *img, int x, int y)
+{
+	char	*ptr;
+
+	ptr = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	return (*(unsigned int *)ptr);
+}
 
 int	constant_loop(t_mlx *mlx)
 {
-	(void)mlx;
+	int	i = 0, j = 0;
+	while (i < WIDTH){
+		j = 0;
+		while (j < HEIGHT){
+			img_pix_put(&mlx->screen, i, j, mlx->FC[0]);
+			j++;
+		}
+		i++;
+	}
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->screen.img, 0, 0);
 	return (0);
 }
 
@@ -75,6 +90,18 @@ int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 		return (1);
 	return (0);
 }
+//PARSING
+//✓ Check if 1 arg
+//✓ Check if filename ends in ."cub"
+//✓ Read file and put into string								!!!(Maybe comeback to it for stdin)!!!
+//✓ Check if one and only one texture for each type NO SO WE EA F C (skip spaces not isspace)
+//✓ Check if only valid characters in map 0 1 N S E W space
+//✓ Check if map is closed
+//✓ Put map into file, formated in rectangle
+//✓ \n anywhere but not in map (checks if \n after \n)
+//✓ Check if map is at end of file (i + 1 = NULL)
+//✓ check only one N || S || W || E
+//✓ Check if textures files exist or color exist
 
 int	main(int argc, char **argv)
 {
