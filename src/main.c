@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 00:48:13 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 09:19:02 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ int	print_err(char *fi, int li, const char *fu, char *str)
 //✓ \n anywhere but not in map (checks if \n after \n)
 //✓ Check if map is at end of file (i + 1 = NULL)
 //✓ check only one N || S || W || E
-
-//X Check if textures files exist or color exist
+//✓ Check if textures files exist or color exist
 
 int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 {
+	int	i;
+
 	if (argc != 2)
 		return (print_err(__FILE__, __LINE__, __func__, ARG_NBR));
 	if (wrong_filename(argv[1]) || read_file(argv[1], data))
@@ -50,8 +51,16 @@ int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 		return (1);
 	if (get_map(data) || closed_map(data))
 		return (1);
+	free(data->file);
+	data->file = NULL;
 	if (init_mlx(mlx) || get_textures(data, mlx))
 		return (1);
+	i = -1;
+	while (++i < 6)
+	{
+		free(data->textures[i]);
+		data->textures[i] = NULL;
+	}
 	return (0);
 }
 
