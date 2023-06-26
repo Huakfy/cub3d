@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 09:23:45 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 09:58:47 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,15 @@
 # define YELLOW		"\033[0;93m"
 
 //Mlx
-# define WIDTH 2560
-# define HEIGHT 1440
+# define WIDTH 1920
+# define HEIGHT 1080
 # define NAME "cub3D"
 
 //include lib
 # include <stdio.h> //printf
 # include <fcntl.h> //open
+# include <X11/X.h> //event and masks
+# include <X11/keysym.h> //keypress
 
 //include headers
 //# include "../libft/src/libft.h" //libft
@@ -105,6 +107,12 @@ int		closed_map(t_map *data);
 //parsing_mlx.c
 int		get_textures(t_map *data, t_mlx *mlx);
 int		init_mlx(t_mlx *mlx);
+
+//MLX
+//
+int		constant_loop(t_mlx *mlx);
+int		handle_keypress(int keysym, t_mlx *mlx);
+int		cross_press(t_mlx *mlx);
 
 //UTILS
 //

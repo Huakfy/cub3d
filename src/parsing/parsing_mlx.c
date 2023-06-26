@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 00:47:43 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 09:30:35 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 10:31:06 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,10 @@ int	init_mlx(t_mlx *mlx)
 		return (print_err(__FILE__, __LINE__, __func__, IMG_INIT));
 	mlx->screen.addr = mlx_get_data_addr(mlx->screen.img, &mlx->screen.bpp, \
 	&mlx->screen.line_len, &mlx->screen.endian);
+	//render map first image
+	mlx_loop_hook(mlx->ptr, &constant_loop, mlx);
+	mlx_hook(mlx->win, KeyPress, KeyPressMask, &handle_keypress, mlx);
+	mlx_hook(mlx->win, ClientMessage, LeaveWindowMask, &cross_press, mlx);
+	mlx_loop(mlx->ptr);
 	return (0);
 }

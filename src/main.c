@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 09:30:30 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 10:32:06 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,25 @@ int	print_err(char *fi, int li, const char *fu, char *str)
 //✓ Check if map is at end of file (i + 1 = NULL)
 //✓ check only one N || S || W || E
 //✓ Check if textures files exist or color exist
+
+int	constant_loop(t_mlx *mlx)
+{
+	(void)mlx;
+	return (0);
+}
+
+int	handle_keypress(int keysym, t_mlx *mlx)
+{
+	if (keysym == XK_Escape)
+		mlx_loop_end(mlx->ptr);
+	return (0);
+}
+
+int	cross_press(t_mlx *mlx)
+{
+	mlx_loop_end(mlx->ptr);
+	return (0);
+}
 
 int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 {
