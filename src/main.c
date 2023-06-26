@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 11:01:31 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 11:07:15 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,6 @@ int	print_err(char *fi, int li, const char *fu, char *str)
 	return (1);
 }
 
-void	img_pix_put(t_img *img, int x, int y, unsigned int color)
-{
-	char	*ptr;
-
-	if (color != 4278190080) // transparence (inutile ?)
-	{
-		ptr = img->addr + (y * img->line_len + x * (img->bpp / 8));
-		*(unsigned int *)ptr = color;
-	}
-}
-
-unsigned int	get_color(t_img *img, int x, int y)
-{
-	char	*ptr;
-
-	ptr = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	return (*(unsigned int *)ptr);
-}
-
 int	constant_loop(t_mlx *mlx)
 {
 	int	i = 0, j = 0;
@@ -57,19 +38,6 @@ int	constant_loop(t_mlx *mlx)
 		i++;
 	}
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->screen.img, 0, 0);
-	return (0);
-}
-
-int	handle_keypress(int keysym, t_mlx *mlx)
-{
-	if (keysym == XK_Escape)
-		mlx_loop_end(mlx->ptr);
-	return (0);
-}
-
-int	cross_press(t_mlx *mlx)
-{
-	mlx_loop_end(mlx->ptr);
 	return (0);
 }
 

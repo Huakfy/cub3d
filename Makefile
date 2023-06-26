@@ -17,7 +17,7 @@ INCLUDE	=	-I ./include -I ./libft/src -I $(PATH_MLX)
 HEADER	=	include/cub3D.h
 
 # Source
-FILES	=	main parsing_textures data_utils parsing_map convert_pos_x_y parsing_mlx
+FILES	=	main parsing_textures data_utils parsing_map convert_pos_x_y parsing_mlx mlx_utils
 
 SRCS	=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 OBJS	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
@@ -28,7 +28,7 @@ $(OBJF) :
 	@mkdir -p $(OBJ_DIR)
 
 # Add the path to the builtin folder to vpath
-vpath %.c $(SRC_DIR) $(SRC_DIR)/parsing $(SRC_DIR)/utils
+vpath %.c $(SRC_DIR) $(SRC_DIR)/parsing $(SRC_DIR)/utils $(SRC_DIR)/mlx
 
 all : $(NAME)
 
