@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:05:27 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 11:07:03 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 11:38:46 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	img_pix_put(t_img *img, int x, int y, unsigned int color)
 	}
 }
 
-unsigned int	get_color(t_img *img, int x, int y)
+unsigned int	get_img_color(t_img *img, int x, int y)
 {
 	char	*ptr;
 

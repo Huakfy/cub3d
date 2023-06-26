@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 11:07:15 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 11:15:48 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,6 @@ int	print_err(char *fi, int li, const char *fu, char *str)
 	write(2, "\n", 1);
 	write(2, DEF, ft_strlen(DEF));
 	return (1);
-}
-
-int	constant_loop(t_mlx *mlx)
-{
-	int	i = 0, j = 0;
-	while (i < WIDTH){
-		j = 0;
-		while (j < HEIGHT){
-			img_pix_put(&mlx->screen, i, j, mlx->FC[0]);
-			j++;
-		}
-		i++;
-	}
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->screen.img, 0, 0);
-	return (0);
 }
 
 int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)

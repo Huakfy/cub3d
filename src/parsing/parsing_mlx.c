@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 00:47:43 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 10:55:49 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 11:42:57 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,9 @@ int	init_mlx(t_mlx *mlx)
 		return (print_err(__FILE__, __LINE__, __func__, IMG_INIT));
 	mlx->screen.addr = mlx_get_data_addr(mlx->screen.img, &mlx->screen.bpp, \
 	&mlx->screen.line_len, &mlx->screen.endian);
-	//render map first image
-	mlx_loop_hook(mlx->ptr, &constant_loop, mlx);
+	//generate first image then only change it on key press
+	render_screen(mlx);
+	//mlx_loop_hook(mlx->ptr, &constant_loop, mlx); //for possible animations
 	mlx_hook(mlx->win, KeyPress, KeyPressMask, &handle_keypress, mlx);
 	mlx_hook(mlx->win, ClientMessage, LeaveWindowMask, &cross_press, mlx);
 	mlx_loop(mlx->ptr);

@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 11:01:35 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 11:43:05 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,13 @@
 # define HEIGHT 1080
 # define NAME "cub3D"
 
-//include lib
+//Lib
 # include <stdio.h> //printf
 # include <fcntl.h> //open
 # include <X11/X.h> //event and masks
-# include <X11/keysym.h> //keypress
+# include <X11/keysym.h> //keypress real names ex: XK_Escape
 
-//include headers
-//# include "../libft/src/libft.h" //libft
+//Headers
 # include "libft.h" //libft
 # include "mlx.h" //mlx
 
@@ -84,7 +83,8 @@ typedef struct s_img
 	int		height;
 }	t_img;
 
-//textures: NO SO WE EA F C
+//textures: NO SO WE EA
+//FC color of Floor and Ceiling
 typedef struct s_mlx
 {
 	void	*ptr;
@@ -96,35 +96,36 @@ typedef struct s_mlx
 
 //PARSING
 //parsing_textures.c
-int		wrong_filename(char *filename);
-int		read_file(char *filename, t_map *data);
-int		get_texture_paths(t_map *data);
+int				wrong_filename(char *filename);
+int				read_file(char *filename, t_map *data);
+int				get_texture_paths(t_map *data);
 //parsing_map.c
-int		invalid_char(t_map *data);
-int		size_map(t_map *data);
-int		get_map(t_map *data);
-int		closed_map(t_map *data);
+int				invalid_char(t_map *data);
+int				size_map(t_map *data);
+int				get_map(t_map *data);
+int				closed_map(t_map *data);
 //parsing_mlx.c
-int		get_textures(t_map *data, t_mlx *mlx);
-int		init_mlx(t_mlx *mlx);
+int				get_textures(t_map *data, t_mlx *mlx);
+int				init_mlx(t_mlx *mlx);
 
 //MLX
-//
-int		constant_loop(t_mlx *mlx);
-int		handle_keypress(int keysym, t_mlx *mlx);
-int		cross_press(t_mlx *mlx);
-//
-void	img_pix_put(t_img *img, int x, int y, unsigned int color);
+//mlx_utils.c
+int				handle_keypress(int keysym, t_mlx *mlx);
+int				cross_press(t_mlx *mlx);
+void			img_pix_put(t_img *img, int x, int y, unsigned int color);
+unsigned int	get_img_color(t_img *img, int x, int y);
+//render.c
+int				render_screen(t_mlx *mlx);
 
 //UTILS
 //
-int		print_err(char *fi, int li, const char *fu, char *str);
+int				print_err(char *fi, int li, const char *fu, char *str);
 //data_utils.c
-void	init_all(t_map *data, t_mlx *mlx);
-int		free_all(t_map *data, t_mlx *mlx, int ret);
+void			init_all(t_map *data, t_mlx *mlx);
+int				free_all(t_map *data, t_mlx *mlx, int ret);
 //convert_pos_x_y.c
-int		pos_to_x(int pos, int row_len);
-int		pos_to_y(int pos, int row_len);
-int		coord_to_pos(int x, int y, int row_len);
+int				pos_to_x(int pos, int row_len);
+int				pos_to_y(int pos, int row_len);
+int				coord_to_pos(int x, int y, int row_len);
 
 #endif
