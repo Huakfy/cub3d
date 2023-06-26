@@ -6,13 +6,13 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:45:06 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 09:33:18 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 14:20:57 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	init_tmlx(t_mlx *mlx)
+static void	init_tmlx(t_map *data, t_mlx *mlx)
 {
 	int	i;
 
@@ -32,6 +32,7 @@ static void	init_tmlx(t_mlx *mlx)
 	}
 	mlx->FC[0] = 0;
 	mlx->FC[1] = 0;
+	mlx->data = data;
 }
 
 void	init_all(t_map *data, t_mlx *mlx)
@@ -48,7 +49,7 @@ void	init_all(t_map *data, t_mlx *mlx)
 	data->map = NULL;
 	data->start_pos = 0;
 	data->start_dir = 0;
-	init_tmlx(mlx);
+	init_tmlx(data, mlx);
 }
 
 int	free_all(t_map *data, t_mlx *mlx, int ret)

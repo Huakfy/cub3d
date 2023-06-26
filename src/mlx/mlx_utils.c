@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:05:27 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 11:38:46 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 16:58:41 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	img_pix_put(t_img *img, int x, int y, unsigned int color)
 {
 	char	*ptr;
 
-	if (color != 4278190080) // transparence (inutile ?)
-	{
+	//if (color != 4278190080) // transparence (inutile ?)
+	//{
 		ptr = img->addr + (y * img->line_len + x * (img->bpp / 8));
-		*(unsigned int *)ptr = color;
-	}
+		*(int *)ptr = color;
+	//}
 }
 
 unsigned int	get_img_color(t_img *img, int x, int y)

@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 11:43:05 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/26 16:52:59 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 # include <fcntl.h> //open
 # include <X11/X.h> //event and masks
 # include <X11/keysym.h> //keypress real names ex: XK_Escape
+# include <math.h> //raycasting
 
 //Headers
 # include "libft.h" //libft
@@ -92,6 +93,7 @@ typedef struct s_mlx
 	t_img	screen;
 	t_img	textures[4];
 	int		FC[2];
+	t_map	*data;
 }	t_mlx;
 
 //PARSING
