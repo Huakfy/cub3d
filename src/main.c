@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 12:18:04 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/27 13:45:54 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 	mlx->ptr = mlx_init();
 	if (!mlx->ptr)
 		return (print_err(__FILE__, __LINE__, __func__, MLX_INIT));
-	if (get_textures(data, mlx) || init_mlx(mlx))
+	if (get_textures(data, mlx) || init_mlx(mlx, data))
 		return (1);
 	return (0);
 }

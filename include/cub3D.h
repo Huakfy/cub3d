@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/27 12:07:58 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:07:09 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,23 @@
 # define CUB3D_H
 
 # define DEBUG 1
+
+//Keys
+//Move
+# define FRONT XK_z
+# define BACK XK_s
+# define LEFT XK_q
+# define RIGHT XK_d
+//rotation
+# define RRIGHT XK_Right
+# define RLEFT XK_Left
+
+# define STEP 0.5
+
+//Mlx
+# define WIDTH 1920
+# define HEIGHT 1080
+# define NAME "cub3D"
 
 //Errors
 # define ARG_NBR "Need filename as argument\nExample: ./cub3D map.cub"
@@ -44,11 +61,6 @@
 # define RED		"\033[0;91m"
 # define YELLOW		"\033[0;93m"
 
-//Mlx
-# define WIDTH 1920
-# define HEIGHT 1080
-# define NAME "cub3D"
-
 //Lib
 # include <stdio.h> //printf
 # include <fcntl.h> //open
@@ -71,6 +83,10 @@ typedef struct s_map
 	char	*map;
 	int		start_pos;
 	char	start_dir;
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
 }	t_map;
 
 typedef struct s_img
@@ -108,7 +124,7 @@ int				get_map(t_map *data);
 int				closed_map(t_map *data);
 //parsing_mlx.c
 int				get_textures(t_map *data, t_mlx *mlx);
-int				init_mlx(t_mlx *mlx);
+int				init_mlx(t_mlx *mlx, t_map *data);
 
 //MLX
 //mlx_utils.c

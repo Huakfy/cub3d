@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 00:47:43 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/27 12:19:06 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/27 13:47:44 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	get_textures(t_map *data, t_mlx *mlx)
 }
 
 //Init mlx utils
-int	init_mlx(t_mlx *mlx)
+int	init_mlx(t_mlx *mlx, t_map *data)
 {
 	mlx->win = mlx_new_window(mlx->ptr, WIDTH, HEIGHT, NAME);
 	if (!mlx->win)
@@ -111,6 +111,18 @@ int	init_mlx(t_mlx *mlx)
 		return (print_err(__FILE__, __LINE__, __func__, IMG_INIT));
 	mlx->screen.addr = mlx_get_data_addr(mlx->screen.img, &mlx->screen.bpp, \
 	&mlx->screen.line_len, &mlx->screen.endian);
+
+	data->posX = pos_to_x(data->start_pos, data->nb_col);
+	data->posY = pos_to_y(data->start_pos, data->nb_col);
+	if (data->start_dir == 'N')
+		data->dirY = -0.66;
+	else if (data->start_dir == 'S')
+		data->dirY = 0.66;
+	else if (data->start_dir == 'W')
+		data->dirX = -0.66;
+	else if (data->start_dir == 'E')
+		data->dirX = 0.66;
+
 	//generate first image then only change it on key press
 	render_screen(mlx);
 	//mlx_loop_hook(mlx->ptr, &animation, mlx); //for possible animations

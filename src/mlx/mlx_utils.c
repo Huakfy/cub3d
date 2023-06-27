@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:05:27 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/26 16:58:41 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:11:14 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,19 @@
 int	handle_keypress(int keysym, t_mlx *mlx)
 {
 	if (keysym == XK_Escape)
-		mlx_loop_end(mlx->ptr);
+		return (mlx_loop_end(mlx->ptr));
+	else if (keysym == FRONT)
+		printf("FRONT\n");
+	else if (keysym == BACK)
+		printf("BACK\n");
+	else if (keysym == LEFT)
+		printf("LEFT\n");
+	else if (keysym == RIGHT)
+		printf("RIGHT\n");
+	else if (keysym == RRIGHT)
+		printf("RRIGHT\n");
+	else if (keysym == RLEFT)
+		printf("RLEFT\n");
 	return (0);
 }
 
