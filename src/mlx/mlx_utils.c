@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:05:27 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/27 14:55:59 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/27 15:15:54 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	handle_keypress(int keysym, t_mlx *mlx)
 	d = mlx->data;
 	if (keysym == XK_Escape)
 		return (mlx_loop_end(mlx->ptr));
+	printf("%f %f\n", d->dirX, d->dirY);
 	if (keysym == FRONT)
 	{
 		if (d->map[coord_to_pos(d->posX + d->dirX * MOVSTEP, d->posY, d->nb_col)] != '1')
@@ -35,11 +36,9 @@ int	handle_keypress(int keysym, t_mlx *mlx)
 	}
 	else if (keysym == LEFT)
 	{
-
 	}
 	else if (keysym == RIGHT)
 	{
-
 	}
 	else if (keysym == RRIGHT)
 	{
