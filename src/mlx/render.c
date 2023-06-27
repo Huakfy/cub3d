@@ -87,7 +87,7 @@ int	raycasting(t_mlx *mlx, t_map *data)
 				mapY += stepY;
 				side = 1;
 			}
-			if (data->map[coord_to_pos(mapX, mapY, data->nb_col)] > '0')
+			if (data->map[coord_to_pos(mapX, mapY, data->nb_col)] == '1')
 				hit = 1;
 		}
 		if(side == 0) perpWallDist = (sideDistX - deltaDistX);

@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 00:47:43 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/27 14:50:51 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/27 16:00:50 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,17 +112,31 @@ int	init_mlx(t_mlx *mlx, t_map *data)
 	mlx->screen.addr = mlx_get_data_addr(mlx->screen.img, &mlx->screen.bpp, \
 	&mlx->screen.line_len, &mlx->screen.endian);
 
-	data->posX = pos_to_x(data->start_pos, data->nb_col);
-	data->posY = pos_to_y(data->start_pos, data->nb_col);
+	data->posX = pos_to_x(data->start_pos, data->nb_col) + 0.5;
+	data->posY = pos_to_y(data->start_pos, data->nb_col) + 0.5;
 	if (data->start_dir == 'N')
-		data->dirY = -0.66;
+	{
+		data->dirY = -1;
+		data->planeX = 0.66;
+	}
 	else if (data->start_dir == 'S')
-		data->dirY = 0.66;
+	{
+		data->dirY = 1;
+		data->planeX = -0.66;
+
+	}
 	else if (data->start_dir == 'W')
-		data->dirX = -0.66;
+	{
+		data->dirX = -1;
+		data->planeY = -0.66;
+	}
 	else if (data->start_dir == 'E')
-		data->dirX = 0.66;
-	data->planeX = 0.66, data->planeY = 0;
+	{
+		data->dirX = 1;
+		data->planeY = 0.66;
+
+	}
+	//data->planeX = 0.66, data->planeY = 0;
 
 	//generate first image then only change it on key press
 	render_screen(mlx);
