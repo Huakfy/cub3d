@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/27 13:45:54 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:33:45 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ int	print_err(char *fi, int li, const char *fu, char *str)
 	return (1);
 }
 
+void	print_map_debug(t_map *data) {
+	int	i = 0;
+	while (data->map[i]){
+		if (i != 0 && i % data->nb_col == 0)
+			printf("\n");
+		printf("%c", data->map[i]);
+		i++;
+	}
+}
+
 int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 {
 	if (argc != 2)
@@ -39,6 +49,9 @@ int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 	mlx->ptr = mlx_init();
 	if (!mlx->ptr)
 		return (print_err(__FILE__, __LINE__, __func__, MLX_INIT));
+
+	//print_map_debug(data);//
+
 	if (get_textures(data, mlx) || init_mlx(mlx, data))
 		return (1);
 	return (0);

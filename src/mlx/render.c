@@ -15,14 +15,12 @@
 //raycasting calcul a chaque ligne vertical de l'ecran donc plus opti d'avoir un jeu en 4:3
 int	raycasting(t_mlx *mlx, t_map *data)
 {
-	double	planeX = 0.66, planeY = 0;
-
 	int	x = 0;
 	while (x < WIDTH)
 	{
 		double	cameraX = 2 * x / (double)WIDTH - 1;
-		double rayDirX = data->dirX + planeX * cameraX;
-		double rayDirY = data->dirY + planeY * cameraX;
+		double rayDirX = data->dirX + data->planeX * cameraX;
+		double rayDirY = data->dirY + data->planeY * cameraX;
 
 		int	mapX = (int)data->posX;
 		int	mapY = (int)data->posY;

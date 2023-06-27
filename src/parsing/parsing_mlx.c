@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 00:47:43 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/27 13:47:44 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:50:51 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int	init_mlx(t_mlx *mlx, t_map *data)
 		data->dirX = -0.66;
 	else if (data->start_dir == 'E')
 		data->dirX = 0.66;
+	data->planeX = 0.66, data->planeY = 0;
 
 	//generate first image then only change it on key press
 	render_screen(mlx);

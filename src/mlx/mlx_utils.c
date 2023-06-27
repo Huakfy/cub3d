@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:05:27 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/27 14:11:14 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:55:59 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,52 @@
 
 int	handle_keypress(int keysym, t_mlx *mlx)
 {
+	t_map	*d;
+
+	d = mlx->data;
 	if (keysym == XK_Escape)
 		return (mlx_loop_end(mlx->ptr));
-	else if (keysym == FRONT)
-		printf("FRONT\n");
+	if (keysym == FRONT)
+	{
+		if (d->map[coord_to_pos(d->posX + d->dirX * MOVSTEP, d->posY, d->nb_col)] != '1')
+			d->posX += d->dirX * MOVSTEP;
+		if (d->map[coord_to_pos(d->posX, d->posY + d->dirY * MOVSTEP, d->nb_col)] != '1')
+			d->posY += d->dirY * MOVSTEP;
+	}
 	else if (keysym == BACK)
-		printf("BACK\n");
+	{
+		if (d->map[coord_to_pos(d->posX - d->dirX * MOVSTEP, d->posY, d->nb_col)] != '1')
+			d->posX -= d->dirX * MOVSTEP;
+		if (d->map[coord_to_pos(d->posX, d->posY - d->dirY * MOVSTEP, d->nb_col)] != '1')
+			d->posY -= d->dirY * MOVSTEP;
+	}
 	else if (keysym == LEFT)
-		printf("LEFT\n");
+	{
+
+	}
 	else if (keysym == RIGHT)
-		printf("RIGHT\n");
+	{
+
+	}
 	else if (keysym == RRIGHT)
-		printf("RRIGHT\n");
+	{
+		double oldDirX = d->dirX;
+		d->dirX = d->dirX * cos(ROTSTEP) - d->dirY * sin(ROTSTEP);
+		d->dirY = oldDirX * sin(ROTSTEP) + d->dirY * cos(ROTSTEP);
+		double oldPlaneX = d->planeX;
+		d->planeX = d->planeX * cos(ROTSTEP) - d->planeY * sin(ROTSTEP);
+		d->planeY = oldPlaneX * sin(ROTSTEP) + d->planeY * cos(ROTSTEP);
+	}
 	else if (keysym == RLEFT)
-		printf("RLEFT\n");
+	{
+		double oldDirX = d->dirX;
+		d->dirX = d->dirX * cos(-ROTSTEP) - d->dirY * sin(-ROTSTEP);
+		d->dirY = oldDirX * sin(-ROTSTEP) + d->dirY * cos(-ROTSTEP);
+		double oldPlaneX = d->planeX;
+		d->planeX = d->planeX * cos(-ROTSTEP) - d->planeY * sin(-ROTSTEP);
+		d->planeY = oldPlaneX * sin(-ROTSTEP) + d->planeY * cos(-ROTSTEP);
+	}
+	render_screen(mlx);
 	return (0);
 }
 

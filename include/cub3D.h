@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/27 14:07:09 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:54:58 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 # define RRIGHT XK_Right
 # define RLEFT XK_Left
 
-# define STEP 0.5
+# define MOVSTEP 1
+# define ROTSTEP 0.1
 
 //Mlx
 # define WIDTH 1920
@@ -87,6 +88,8 @@ typedef struct s_map
 	double	posY;
 	double	dirX;
 	double	dirY;
+	double	planeX;
+	double	planeY;
 }	t_map;
 
 typedef struct s_img

@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:45:06 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/27 13:42:01 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:49:47 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	init_all(t_map *data, t_mlx *mlx)
 	data->posY = 0;
 	data->dirX = 0;
 	data->dirY = 0;
+	data->planeX = 0;
+	data->planeY = 0;
 	init_tmlx(data, mlx);
 }
 
