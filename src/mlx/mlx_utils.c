@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:05:27 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/28 13:17:47 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/28 15:41:29 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,56 +15,55 @@
 int	handle_keypress(int keysym, t_mlx *mlx)
 {
 	t_map	*d;
+	double	oldDirX;
+	double	oldPlaneX;
 
 	d = mlx->data;
 	if (keysym == XK_Escape)
 		return (mlx_loop_end(mlx->ptr));
-	printf("dirXY %f %f posXY %f %f map[XY] %c\n", d->dirX, d->dirY, d->posX, d->posY, d->map[coord_to_pos(d->posX, d->posY, d->nb_col)]);
 	if (keysym == FRONT)
 	{
-		if (d->map[coord_to_pos(d->posX + d->dirX * MOVSTEP, d->posY, d->nb_col)] != '1')
-			d->posX += d->dirX * MOVSTEP;
-		if (d->map[coord_to_pos(d->posX, d->posY + d->dirY * MOVSTEP, d->nb_col)] != '1')
-			d->posY += d->dirY * MOVSTEP;
+		if (d->map[coord_to_pos(d->posX + d->dirX * MOVSTEP, d->posY + d->dirY * MOVSTEP, d->nb_col)] == '1')
+			return (0);
+		d->posX += d->dirX * MOVSTEP;
+		d->posY += d->dirY * MOVSTEP;
 	}
 	else if (keysym == BACK)
 	{
-		if (d->map[coord_to_pos(d->posX - d->dirX * MOVSTEP, d->posY, d->nb_col)] != '1')
-			d->posX -= d->dirX * MOVSTEP;
-		if (d->map[coord_to_pos(d->posX, d->posY - d->dirY * MOVSTEP, d->nb_col)] != '1')
-			d->posY -= d->dirY * MOVSTEP;
+		if (d->map[coord_to_pos(d->posX - d->dirX * MOVSTEP, d->posY - d->dirY * MOVSTEP, d->nb_col)] == '1')
+			return (0);
+		d->posX -= d->dirX * MOVSTEP;
+		d->posY -= d->dirY * MOVSTEP;
 	}
 	else if (keysym == LEFT)
 	{
-		if (d->map[coord_to_pos(d->posX + d->dirY * MOVSTEP, d->posY - d->dirX * MOVSTEP, d->nb_col)] != '1')
-		{
-			d->posX += d->dirY * MOVSTEP;
-			d->posY -= d->dirX * MOVSTEP;
-		}
+		if (d->map[coord_to_pos(d->posX + d->dirY * MOVSTEP, d->posY - d->dirX * MOVSTEP, d->nb_col)] == '1')
+			return (0);
+		d->posX += d->dirY * MOVSTEP;
+		d->posY -= d->dirX * MOVSTEP;
 	}
 	else if (keysym == RIGHT)
 	{
-		if (d->map[coord_to_pos(d->posX - d->dirY * MOVSTEP, d->posY + d->dirX * MOVSTEP, d->nb_col)] != '1')
-		{
-			d->posX -= d->dirY * MOVSTEP;
-			d->posY += d->dirX * MOVSTEP;
-		}
+		if (d->map[coord_to_pos(d->posX - d->dirY * MOVSTEP, d->posY + d->dirX * MOVSTEP, d->nb_col)] == '1')
+			return (0);
+		d->posX -= d->dirY * MOVSTEP;
+		d->posY += d->dirX * MOVSTEP;
 	}
 	else if (keysym == RLEFT)
 	{
-		double oldDirX = d->dirX;
+		oldDirX = d->dirX;
+		oldPlaneX = d->planeX;
 		d->dirX = d->dirX * cos(-ROTSTEP) - d->dirY * sin(-ROTSTEP);
 		d->dirY = oldDirX * sin(-ROTSTEP) + d->dirY * cos(-ROTSTEP);
-		double oldPlaneX = d->planeX;
 		d->planeX = d->planeX * cos(-ROTSTEP) - d->planeY * sin(-ROTSTEP);
 		d->planeY = oldPlaneX * sin(-ROTSTEP) + d->planeY * cos(-ROTSTEP);
 	}
 	else if (keysym == RRIGHT)
 	{
-		double oldDirX = d->dirX;
+		oldDirX = d->dirX;
+		oldPlaneX = d->planeX;
 		d->dirX = d->dirX * cos(ROTSTEP) - d->dirY * sin(ROTSTEP);
 		d->dirY = oldDirX * sin(ROTSTEP) + d->dirY * cos(ROTSTEP);
-		double oldPlaneX = d->planeX;
 		d->planeX = d->planeX * cos(ROTSTEP) - d->planeY * sin(ROTSTEP);
 		d->planeY = oldPlaneX * sin(ROTSTEP) + d->planeY * cos(ROTSTEP);
 	}
