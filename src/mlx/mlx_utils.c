@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:05:27 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/27 15:57:17 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/28 13:17:47 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	handle_keypress(int keysym, t_mlx *mlx)
 	d = mlx->data;
 	if (keysym == XK_Escape)
 		return (mlx_loop_end(mlx->ptr));
-	printf("%f %f %c\n", d->dirX, d->dirY, d->map[coord_to_pos(d->posX, d->posY, d->nb_col)]);
+	printf("dirXY %f %f posXY %f %f map[XY] %c\n", d->dirX, d->dirY, d->posX, d->posY, d->map[coord_to_pos(d->posX, d->posY, d->nb_col)]);
 	if (keysym == FRONT)
 	{
 		if (d->map[coord_to_pos(d->posX + d->dirX * MOVSTEP, d->posY, d->nb_col)] != '1')
@@ -36,10 +36,19 @@ int	handle_keypress(int keysym, t_mlx *mlx)
 	}
 	else if (keysym == LEFT)
 	{
-
+		if (d->map[coord_to_pos(d->posX + d->dirY * MOVSTEP, d->posY - d->dirX * MOVSTEP, d->nb_col)] != '1')
+		{
+			d->posX += d->dirY * MOVSTEP;
+			d->posY -= d->dirX * MOVSTEP;
+		}
 	}
 	else if (keysym == RIGHT)
 	{
+		if (d->map[coord_to_pos(d->posX - d->dirY * MOVSTEP, d->posY + d->dirX * MOVSTEP, d->nb_col)] != '1')
+		{
+			d->posX -= d->dirY * MOVSTEP;
+			d->posY += d->dirX * MOVSTEP;
+		}
 	}
 	else if (keysym == RLEFT)
 	{
