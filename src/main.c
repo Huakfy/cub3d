@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/27 14:33:45 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/28 20:06:28 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,21 @@ int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 
 	//print_map_debug(data);//
 
-	if (get_textures(data, mlx) || init_mlx(mlx, data))
+	if (get_textures(data, mlx))
+		return (1);
+
+	//free unneeded data
+	free(data->file);
+	data->file = NULL;
+	int	i;
+	i = -1;
+	while (++i < 6)
+	{
+		free(data->textures[i]);
+		data->textures[i] = NULL;
+	}
+
+	if (init_mlx(mlx, data))
 		return (1);
 	return (0);
 }

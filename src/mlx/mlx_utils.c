@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:05:27 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/28 15:52:15 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:55:56 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	handle_keypress(int keysym, t_mlx *mlx)
 		d->planeX = d->planeX * cos(ROTSTEP) - d->planeY * sin(ROTSTEP);
 		d->planeY = oldPlaneX * sin(ROTSTEP) + d->planeY * cos(ROTSTEP);
 	}
-	render_screen(mlx);
+	//render_screen(mlx);
 	return (0);
 }
 

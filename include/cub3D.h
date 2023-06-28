@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/28 19:41:08 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:59:34 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define RRIGHT XK_Right
 # define RLEFT XK_Left
 
-# define MOVSTEP 1
+# define MOVSTEP 0.25
 # define ROTSTEP 0.1
 
 //Mlx
