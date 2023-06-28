@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 00:47:43 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/27 16:00:50 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/28 15:59:49 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,10 @@ int	init_mlx(t_mlx *mlx, t_map *data)
 		data->planeY = 0.66;
 
 	}
-	//data->planeX = 0.66, data->planeY = 0;
 
 	//generate first image then only change it on key press
 	render_screen(mlx);
-	//mlx_loop_hook(mlx->ptr, &animation, mlx); //for possible animations
+	//mlx_loop_hook(mlx->ptr, &constant_loop, mlx); //for possible animations
 	mlx_hook(mlx->win, KeyPress, KeyPressMask, &handle_keypress, mlx);
 	mlx_hook(mlx->win, ClientMessage, LeaveWindowMask, &cross_press, mlx);
 	mlx_loop(mlx->ptr);

@@ -12,7 +12,108 @@
 
 #include "cub3D.h"
 
+#define texWidth 64
+#define texHeight 64
+
 //raycasting calcul a chaque ligne vertical de l'ecran donc plus opti d'avoir un jeu en 4:3
+//int	raycasting(t_mlx *mlx, t_map *data)
+//{
+//	int	x = 0;
+//	while (x < WIDTH)
+//	{
+//		double	cameraX = 2 * x / (double)WIDTH - 1;
+//		double rayDirX = data->dirX + data->planeX * cameraX;
+//		double rayDirY = data->dirY + data->planeY * cameraX;
+
+//		int	mapX = (int)data->posX;
+//		int	mapY = (int)data->posY;
+
+//		double sideDistX;
+//		double sideDistY;
+
+//		double deltaDistX;
+//		if (!rayDirX)
+//			deltaDistX = 1e30;
+//		else if (rayDirX < 0)
+//			deltaDistX = -1 * (1 / rayDirX);
+//		else
+//			deltaDistX = 1 / rayDirX;
+
+//		double deltaDistY;
+//		if (!rayDirY)
+//			deltaDistY = 1e30;
+//		else if (rayDirY < 0)
+//			deltaDistY = -1 * (1 / rayDirY);
+//		else
+//			deltaDistY = 1 / rayDirY;
+
+//		double perpWallDist;
+
+//		int	stepX;
+//		int	stepY;
+
+//		int	hit = 0;
+//		int	side;
+
+//		if (rayDirX < 0)
+//		{
+//			stepX = -1;
+//			sideDistX = (data->posX - mapX) * deltaDistX;
+//		}
+//		else
+//		{
+//			stepX = 1;
+//			sideDistX = (mapX + 1.0 - data->posX) * deltaDistX;
+//		}
+//		if (rayDirY < 0)
+//		{
+//			stepY = -1;
+//			sideDistY = (data->posY - mapY) * deltaDistY;
+//		}
+//		else
+//		{
+//			stepY = 1;
+//			sideDistY = (mapY + 1.0 - data->posY) * deltaDistY;
+//		}
+
+//		while (hit == 0)
+//		{
+//			if (sideDistX < sideDistY)
+//			{
+//				sideDistX += deltaDistX;
+//				mapX += stepX;
+//				side = 0;
+//			}
+//			else
+//			{
+//				sideDistY += deltaDistY;
+//				mapY += stepY;
+//				side = 1;
+//			}
+//			if (data->map[coord_to_pos(mapX, mapY, data->nb_col)] == '1')
+//				hit = 1;
+//		}
+//		if(side == 0) perpWallDist = (sideDistX - deltaDistX);
+//		else		perpWallDist = (sideDistY - deltaDistY);
+
+//		int lineHeight = (int)(HEIGHT / perpWallDist);
+
+//		int drawStart = -lineHeight / 2 + HEIGHT / 2;
+//		if(drawStart < 0) drawStart = 0;
+//		int drawEnd = lineHeight / 2 + HEIGHT / 2;
+//		if(drawEnd >= HEIGHT) drawEnd = HEIGHT - 1;
+
+//		int	color = 16777215;
+
+//		if (side == 1) {color = color / 2;}
+
+//		for (int y = drawStart; y < drawEnd; y++)
+//			img_pix_put(&mlx->screen, x, y, color);
+//		x++;
+//	}
+//	return (0);
+//}
+
 int	raycasting(t_mlx *mlx, t_map *data)
 {
 	int	x = 0;
@@ -100,15 +201,33 @@ int	raycasting(t_mlx *mlx, t_map *data)
 		int drawEnd = lineHeight / 2 + HEIGHT / 2;
 		if(drawEnd >= HEIGHT) drawEnd = HEIGHT - 1;
 
-		int	color = 16777215;
+		double	wallX;
+		if (side == 0)	wallX = data->posY + perpWallDist * rayDirY;
+		else			wallX = data->posX + perpWallDist * rayDirX;
+		wallX -= floor((wallX));
 
-		if (side == 1) {color = color / 2;}
+		int	texX = (int)(wallX * (double)texWidth);
+		if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;
+		if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;
+
+		double	step = 1.0 *texHeight / lineHeight;
+
+		double	texPos = (drawStart - HEIGHT / 2 + lineHeight / 2) * step;
+
+		//int	color = 16777215;
+
+		//if (side == 1) {color = color / 2;}
 
 		for (int y = drawStart; y < drawEnd; y++)
-			img_pix_put(&mlx->screen, x, y, color);
+		{
+			int	texY = (int)texPos & (texHeight - 1);
+			texPos += step;
+			int	color = get_img_color(&mlx->textures[0], pos_to_x(texHeight * texY + texX, texWidth), pos_to_y(texHeight * texY + texX, texWidth));
+			if (side == 1) color = color >> 1 & (texHeight - 1);
+				img_pix_put(&mlx->screen, x, y, color);
+		}
 		x++;
 	}
-	(void)data;
 	return (0);
 }
 
@@ -130,3 +249,11 @@ int	render_screen(t_mlx *mlx)
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->screen.img, 0, 0);
 	return (0);
 }
+
+//int	constant_loop(t_mlx *mlx)
+//{
+//	mlx->frames++;
+//	if (mlx->frames % 300 == 0)
+//		render_screen(mlx);
+//	return (0);
+//}
