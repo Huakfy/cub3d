@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:15:17 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 11:38:48 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:26:39 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,11 @@ int	raycasting(t_mlx *mlx, t_map *data)
 	while (x < WIDTH)
 	{
 		double	cameraX = 2 * x / (double)WIDTH - 1;
-		double rayDirX = data->dirX + data->planeX * cameraX;
-		double rayDirY = data->dirY + data->planeY * cameraX;
+		double	rayDirX = data->dirX + data->planeX * cameraX;
+		double	rayDirY = data->dirY + data->planeY * cameraX;
 
 		int	mapX = (int)data->posX;
 		int	mapY = (int)data->posY;
-
-		double sideDistX;
-		double sideDistY;
 
 		double deltaDistX;
 		if (!rayDirX)
@@ -43,14 +40,10 @@ int	raycasting(t_mlx *mlx, t_map *data)
 		else
 			deltaDistY = 1 / rayDirY;
 
-		double perpWallDist;
-
+		double sideDistX;
+		double sideDistY;
 		int	stepX;
 		int	stepY;
-
-		int	hit = 0;
-		int	side;
-
 		if (rayDirX < 0)
 		{
 			stepX = -1;
@@ -72,6 +65,8 @@ int	raycasting(t_mlx *mlx, t_map *data)
 			sideDistY = (mapY + 1.0 - data->posY) * deltaDistY;
 		}
 
+		int	hit = 0;
+		int	side;
 		while (hit == 0)
 		{
 			if (sideDistX < sideDistY)
@@ -89,10 +84,12 @@ int	raycasting(t_mlx *mlx, t_map *data)
 			if (data->map[coord_to_pos(mapX, mapY, data->nb_col)] == '1')
 				hit = 1;
 		}
+
+		double	perpWallDist;
 		if(side == 0) perpWallDist = (sideDistX - deltaDistX);
 		else		perpWallDist = (sideDistY - deltaDistY);
 
-		int lineHeight = (int)(HEIGHT / perpWallDist);
+		int	lineHeight = (int)(HEIGHT / perpWallDist);
 
 		int drawStart = -lineHeight / 2 + HEIGHT / 2;
 		if(drawStart < 0) drawStart = 0;

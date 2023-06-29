@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 12:11:38 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:16:13 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,8 @@ int	print_err(char *fi, int li, const char *fu, char *str)
 	return (1);
 }
 
-void	print_map_debug(t_map *data) {
-	int	i = 0;
-	while (data->map[i]){
-		if (i != 0 && i % data->nb_col == 0)
-			printf("\n");
-		printf("%c", data->map[i]);
-		i++;
-	}
-}
-//print_map_debug(data);//
 
-void	free_unneeded(int i, t_map *data)
+static void	free_unneeded(int i, t_map *data)
 {
 	int	j;
 
@@ -58,6 +48,29 @@ void	free_unneeded(int i, t_map *data)
 	}
 }
 
+//void	print_map_debug(t_map *data) {
+//	int	i = 0;
+//	while (data->map[i]){
+//		if (i != 0 && i % data->nb_col == 0)
+//			printf("\n");
+//		printf("%c", data->map[i]);
+//		i++;
+//	}
+//}
+
+//PARSING
+//✓ Check if 1 arg
+//✓ Check if filename ends in ."cub"
+//✓ Read file and put into string								!!!(Maybe comeback to it for stdin)!!!
+//✓ Check if one and only one texture for each type NO SO WE EA F C (skip spaces not isspace)
+//✓ Check if only valid characters in map 0 1 N S E W space
+//✓ Check if map is closed
+//✓ Put map into file, formated in rectangle
+//✓ \n anywhere but not in map (checks if \n after \n)
+//✓ Check if map is at end of file (i + 1 = NULL)
+//✓ check only one N || S || W || E
+//✓ Check if textures files exist or color exist
+
 int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 {
 	if (argc != 2)
@@ -73,23 +86,8 @@ int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 	if (get_textures(data, mlx) || init_mlx(mlx))
 		return (1);
 	free_unneeded(2, data);
-	if (start_cub3D(mlx, data))
-		return (1);
 	return (0);
 }
-//PARSING
-//✓ Check if 1 arg
-//✓ Check if filename ends in ."cub"
-//✓ Read file and put into string								!!!(Maybe comeback to it for stdin)!!!
-//✓ Check if one and only one texture for each type NO SO WE EA F C (skip spaces not isspace)
-//✓ Check if only valid characters in map 0 1 N S E W space
-//✓ Check if map is closed
-//✓ Put map into file, formated in rectangle
-//✓ \n anywhere but not in map (checks if \n after \n)
-//✓ Check if map is at end of file (i + 1 = NULL)
-//✓ check only one N || S || W || E
-//✓ Check if textures files exist or color exist
-
 
 //Verify all textures have the same height and width
 int	main(int argc, char **argv)
@@ -100,5 +98,7 @@ int	main(int argc, char **argv)
 	init_all(&data, &mlx);
 	if (parsing(&data, argc, argv, &mlx))
 		return (free_all(&data, &mlx, 1));
+	if (start_cub3D(&mlx, &data))
+		return (1);
 	free_all(&data, &mlx, 0);
 }

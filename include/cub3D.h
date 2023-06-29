@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 12:11:34 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:38:27 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define RLEFT	XK_Left
 //Moving and rotation speed
 # define MOVSTEP	0.25
-# define ROTSTEP	0.1
+# define ROTSTEP	0.05
 
 //Mlx
 # define WIDTH	800
