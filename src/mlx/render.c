@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:15:17 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 11:36:33 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 11:38:48 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,6 @@ int	raycasting(t_mlx *mlx, t_map *data)
 
 		double	texPos = (drawStart - HEIGHT / 2 + lineHeight / 2) * step;
 
-		//int	color = 16777215;
-		//if (side == 1) {color = color / 2;}
 		if (side == 0 && rayDirX > 0)
 			side = 1;
 		else if (side == 1 && rayDirY > 0)
@@ -137,14 +135,7 @@ int	raycasting(t_mlx *mlx, t_map *data)
 			texPos += step;
 			int	color;
 
-			if (side == 0)
-				color = *(unsigned int *)(mlx->textures[0].addr + (mlx->textures[0].line_len * texY + texX * (mlx->textures[0].bpp / 8)));
-			else if (side == 1)
-				color = *(unsigned int *)(mlx->textures[1].addr + (mlx->textures[1].line_len * texY + texX * (mlx->textures[1].bpp / 8)));
-			else if (side == 2)
-				color = *(unsigned int *)(mlx->textures[2].addr + (mlx->textures[2].line_len * texY + texX * (mlx->textures[2].bpp / 8)));
-			else if (side == 3)
-				color = *(unsigned int *)(mlx->textures[3].addr + (mlx->textures[3].line_len * texY + texX * (mlx->textures[3].bpp / 8)));
+			color = *(unsigned int *)(mlx->textures[side].addr + (mlx->textures[side].line_len * texY + texX * (mlx->textures[side].bpp / 8)));
 			img_pix_put(&mlx->screen, x, y, color);
 		}
 		x++;
@@ -158,11 +149,3 @@ int	render_screen(t_mlx *mlx)
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->screen.img, 0, 0);
 	return (0);
 }
-
-//int	constant_loop(t_mlx *mlx)
-//{
-//	mlx->frames++;
-//	if (mlx->frames % 300 == 0)
-//		render_screen(mlx);
-//	return (0);
-//}
