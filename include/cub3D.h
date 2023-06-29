@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 11:42:39 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:11:34 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,35 +118,37 @@ typedef struct s_mlx
 
 //PARSING
 //parsing_textures.c
-int				wrong_filename(char *filename);
-int				read_file(char *filename, t_map *data);
-int				get_texture_paths(t_map *data);
+int		wrong_filename(char *filename);
+int		read_file(char *filename, t_map *data);
+int		get_texture_paths(t_map *data);
 //parsing_map.c
-int				invalid_char(t_map *data);
-int				size_map(t_map *data);
-int				get_map(t_map *data);
-int				closed_map(t_map *data);
+int		invalid_char(t_map *data);
+int		size_map(t_map *data);
+int		get_map(t_map *data);
+int		closed_map(t_map *data);
 //parsing_mlx.c
-int				get_textures(t_map *data, t_mlx *mlx);
-int				init_mlx(t_mlx *mlx, t_map *data);
+int		get_textures(t_map *data, t_mlx *mlx);
+int		init_mlx(t_mlx *mlx);
 
 //MLX
 //mlx_utils.c
-int				handle_keypress(int keysym, t_mlx *mlx);
-int				cross_press(t_mlx *mlx);
-void			img_pix_put(t_img *img, int x, int y, unsigned int color);
+int		handle_keypress(int keysym, t_mlx *mlx);
+int		cross_press(t_mlx *mlx);
+void	img_pix_put(t_img *img, int x, int y, unsigned int color);
 //render.c
-int				render_screen(t_mlx *mlx);
+int		render_screen(t_mlx *mlx);
+//start_cub3D.c
+int		start_cub3D(t_mlx *mlx,t_map *data);
 
 //UTILS
 //
-int				print_err(char *fi, int li, const char *fu, char *str);
+int		print_err(char *fi, int li, const char *fu, char *str);
 //data_utils.c
-void			init_all(t_map *data, t_mlx *mlx);
-int				free_all(t_map *data, t_mlx *mlx, int ret);
+void	init_all(t_map *data, t_mlx *mlx);
+int		free_all(t_map *data, t_mlx *mlx, int ret);
 //convert_pos_x_y.c
-int				pos_to_x(int pos, int row_len);
-int				pos_to_y(int pos, int row_len);
-int				coord_to_pos(int x, int y, int row_len);
+int		pos_to_x(int pos, int row_len);
+int		pos_to_y(int pos, int row_len);
+int		coord_to_pos(int x, int y, int row_len);
 
 #endif

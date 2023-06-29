@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 10:45:19 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:11:38 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,28 @@ void	print_map_debug(t_map *data) {
 		i++;
 	}
 }
+//print_map_debug(data);//
+
+void	free_unneeded(int i, t_map *data)
+{
+	int	j;
+
+	if (i == 1)
+	{
+		free(data->file);
+		data->file = NULL;
+		return ;
+	}
+	else if (i == 2)
+	{
+		j = -1;
+		while (++j < 6)
+		{
+			free(data->textures[j]);
+			data->textures[j] = NULL;
+		}
+	}
+}
 
 int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 {
@@ -44,29 +66,14 @@ int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 	get_texture_paths(data) || invalid_char(data) || size_map(data) || \
 	get_map(data) || closed_map(data))
 		return (1);
-	free(data->file);
-	data->file = NULL;
+	free_unneeded(1, data);
 	mlx->ptr = mlx_init();
 	if (!mlx->ptr)
 		return (print_err(__FILE__, __LINE__, __func__, MLX_INIT));
-
-	//print_map_debug(data);//
-
-	if (get_textures(data, mlx))
+	if (get_textures(data, mlx) || init_mlx(mlx))
 		return (1);
-
-	//free unneeded data
-	free(data->file);
-	data->file = NULL;
-	int	i;
-	i = -1;
-	while (++i < 6)
-	{
-		free(data->textures[i]);
-		data->textures[i] = NULL;
-	}
-
-	if (init_mlx(mlx, data))
+	free_unneeded(2, data);
+	if (start_cub3D(mlx, data))
 		return (1);
 	return (0);
 }

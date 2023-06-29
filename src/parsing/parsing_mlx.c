@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 00:47:43 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 10:53:02 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:11:29 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,16 +100,8 @@ int	get_textures(t_map *data, t_mlx *mlx)
 	return (0);
 }
 
-int	constant_loop(t_mlx *mlx)
-{
-	mlx->frames++;
-	if (mlx->frames % 1000 == 0)
-		render_screen(mlx);
-	return (0);
-}
-
 //Init mlx utils
-int	init_mlx(t_mlx *mlx, t_map *data)
+int	init_mlx(t_mlx *mlx)
 {
 	mlx->win = mlx_new_window(mlx->ptr, WIDTH, HEIGHT, NAME);
 	if (!mlx->win)
@@ -119,38 +111,5 @@ int	init_mlx(t_mlx *mlx, t_map *data)
 		return (print_err(__FILE__, __LINE__, __func__, IMG_INIT));
 	mlx->screen.addr = mlx_get_data_addr(mlx->screen.img, &mlx->screen.bpp, \
 	&mlx->screen.line_len, &mlx->screen.endian);
-
-	//init values before starting
-	data->posX = pos_to_x(data->start_pos, data->nb_col) + 0.5;
-	data->posY = pos_to_y(data->start_pos, data->nb_col) + 0.5;
-	if (data->start_dir == 'N')
-	{
-		data->dirY = -1;
-		data->planeX = 0.66;
-	}
-	else if (data->start_dir == 'S')
-	{
-		data->dirY = 1;
-		data->planeX = -0.66;
-
-	}
-	else if (data->start_dir == 'W')
-	{
-		data->dirX = -1;
-		data->planeY = -0.66;
-	}
-	else if (data->start_dir == 'E')
-	{
-		data->dirX = 1;
-		data->planeY = 0.66;
-
-	}
-
-	//generate first image then only change it on key press
-	render_screen(mlx);
-	mlx_loop_hook(mlx->ptr, &constant_loop, mlx); //for possible animations
-	mlx_hook(mlx->win, KeyPress, KeyPressMask, &handle_keypress, mlx);
-	mlx_hook(mlx->win, ClientMessage, LeaveWindowMask, &cross_press, mlx);
-	mlx_loop(mlx->ptr);
 	return (0);
 }
