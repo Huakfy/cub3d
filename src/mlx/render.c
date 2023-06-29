@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:15:17 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 11:08:44 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 11:09:53 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	raycasting(t_mlx *mlx, t_map *data)
 				img_pix_put(&mlx->screen, x, y, mlx->FC[1]);
 				continue;
 			}
-			else if (y > drawEnd)
+			else if (y >= drawEnd)
 			{
 				img_pix_put(&mlx->screen, x, y, mlx->FC[0]);
 				continue;
