@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 10:17:46 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 11:42:39 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ int				init_mlx(t_mlx *mlx, t_map *data);
 int				handle_keypress(int keysym, t_mlx *mlx);
 int				cross_press(t_mlx *mlx);
 void			img_pix_put(t_img *img, int x, int y, unsigned int color);
-unsigned int	get_img_color(t_img *img, int x, int y);
 //render.c
 int				render_screen(t_mlx *mlx);
 
