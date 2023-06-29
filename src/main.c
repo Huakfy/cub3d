@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/28 20:06:28 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 10:45:19 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 //✓ check only one N || S || W || E
 //✓ Check if textures files exist or color exist
 
+
+//Verify all textures have the same height and width
 int	main(int argc, char **argv)
 {
 	t_map	data;

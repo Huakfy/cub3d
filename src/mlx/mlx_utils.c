@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:05:27 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/28 19:55:56 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 10:53:46 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,25 @@ int	handle_keypress(int keysym, t_mlx *mlx)
 	}
 	else if (keysym == LEFT)
 	{
-		if (d->map[coord_to_pos(d->posX + d->dirY * MOVSTEP, d->posY - d->dirX * MOVSTEP, d->nb_col)] == '1')
-			return (0);
-		d->posX += d->dirY * MOVSTEP;
-		d->posY -= d->dirX * MOVSTEP;
+		//if (d->map[coord_to_pos(d->posX + d->dirY * MOVSTEP, d->posY - d->dirX * MOVSTEP, d->nb_col)] == '1')
+		//	return (0);
+		//d->posX += d->dirY * MOVSTEP;
+		//d->posY -= d->dirX * MOVSTEP;
+		if (d->map[coord_to_pos(d->posX - d->planeX * MOVSTEP, d->posY - d->planeY * MOVSTEP, d->nb_col)] == '1')
+				return (0);
+		d->posX -= d->planeX * MOVSTEP;
+		d->posY -= d->planeY * MOVSTEP;
 	}
 	else if (keysym == RIGHT)
 	{
-		if (d->map[coord_to_pos(d->posX - d->dirY * MOVSTEP, d->posY + d->dirX * MOVSTEP, d->nb_col)] == '1')
+		//if (d->map[coord_to_pos(d->posX - d->dirY * MOVSTEP, d->posY + d->dirX * MOVSTEP, d->nb_col)] == '1')
+		//	return (0);
+		//d->posX -= d->dirY * MOVSTEP;
+		//d->posY += d->dirX * MOVSTEP;
+		if (d->map[coord_to_pos(d->posX + d->planeX * MOVSTEP, d->posY + d->planeY * MOVSTEP, d->nb_col)] == '1')
 			return (0);
-		d->posX -= d->dirY * MOVSTEP;
-		d->posY += d->dirX * MOVSTEP;
+		d->posX += d->planeX * MOVSTEP;
+		d->posY += d->planeY * MOVSTEP;
 	}
 	else if (keysym == RLEFT)
 	{

@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:15:17 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/28 19:54:08 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 10:48:05 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,13 @@ int	raycasting(t_mlx *mlx, t_map *data)
 		{
 			int	texY = (int)texPos & (mlx->textures[0].height - 1);
 			texPos += step;
-			int	color = get_img_color(&mlx->textures[0], pos_to_x(mlx->textures[0].height * texY + texX, mlx->textures[0].width), pos_to_y(mlx->textures[0].height * texY + texX, mlx->textures[0].width));
-			if (side == 1) color = color >> 1 & (mlx->textures[0].height - 1);
-				img_pix_put(&mlx->screen, x, y, color);
+			int	color;
+			if (side == 0)
+				color = get_img_color(&mlx->textures[0], pos_to_x(mlx->textures[0].height * texY + texX, mlx->textures[0].width), pos_to_y(mlx->textures[0].height * texY + texX, mlx->textures[0].width));
+			if (side == 1)
+			//color = color >> 1 & (mlx->textures[0].height - 1);
+				color = get_img_color(&mlx->textures[1], pos_to_x(mlx->textures[1].height * texY + texX, mlx->textures[1].width), pos_to_y(mlx->textures[1].height * texY + texX, mlx->textures[1].width));
+			img_pix_put(&mlx->screen, x, y, color);
 		}
 		x++;
 	}
