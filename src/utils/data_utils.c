@@ -6,13 +6,13 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:45:06 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/28 15:45:04 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:47:42 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	init_tmlx(t_map *data, t_mlx *mlx)
+static void	init_tmlx(t_map *data, t_mlx *mlx, t_rayc *ray)
 {
 	int	i;
 
@@ -34,9 +34,10 @@ static void	init_tmlx(t_map *data, t_mlx *mlx)
 	mlx->FC[1] = 0;
 	mlx->data = data;
 	mlx->frames = 0;
+	mlx->ray = ray;
 }
 
-void	init_all(t_map *data, t_mlx *mlx)
+void	init_all(t_map *data, t_mlx *mlx, t_rayc *ray)
 {
 	int	i;
 
@@ -50,13 +51,13 @@ void	init_all(t_map *data, t_mlx *mlx)
 	data->map = NULL;
 	data->start_pos = 0;
 	data->start_dir = 0;
-	data->posX = 0;
-	data->posY = 0;
-	data->dirX = 0;
-	data->dirY = 0;
-	data->planeX = 0;
-	data->planeY = 0;
-	init_tmlx(data, mlx);
+	ray->posX = 0;
+	ray->posY = 0;
+	ray->dirX = 0;
+	ray->dirY = 0;
+	ray->planeX = 0;
+	ray->planeY = 0;
+	init_tmlx(data, mlx, ray);
 }
 
 int	free_all(t_map *data, t_mlx *mlx, int ret)

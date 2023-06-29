@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:06:48 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 12:38:34 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:55:10 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,37 @@ static int	constant_loop(t_mlx *mlx)
 	return (0);
 }
 
-static void	init_mlx_values(t_map *data)
+static void	init_mlx_values(t_rayc *ray, t_map *data)
 {
-	data->posX = pos_to_x(data->start_pos, data->nb_col) + 0.5;
-	data->posY = pos_to_y(data->start_pos, data->nb_col) + 0.5;
+	ray->posX = pos_to_x(data->start_pos, data->nb_col) + 0.5;
+	ray->posY = pos_to_y(data->start_pos, data->nb_col) + 0.5;
 	if (data->start_dir == 'N')
 	{
-		data->dirY = -1;
-		data->planeX = 0.66;
+		ray->dirY = -1;
+		ray->planeX = 0.66;
 	}
 	else if (data->start_dir == 'S')
 	{
-		data->dirY = 1;
-		data->planeX = -0.66;
+		ray->dirY = 1;
+		ray->planeX = -0.66;
 
 	}
 	else if (data->start_dir == 'W')
 	{
-		data->dirX = -1;
-		data->planeY = -0.66;
+		ray->dirX = -1;
+		ray->planeY = -0.66;
 	}
 	else if (data->start_dir == 'E')
 	{
-		data->dirX = 1;
-		data->planeY = 0.66;
+		ray->dirX = 1;
+		ray->planeY = 0.66;
 
 	}
 }
 
 int	start_cub3D(t_mlx *mlx,t_map *data)
 {
-	init_mlx_values(data);
+	init_mlx_values(mlx->ray, data);
 	mlx_loop_hook(mlx->ptr, &constant_loop, mlx);
 	mlx_hook(mlx->win, KeyPress, KeyPressMask, &handle_keypress, mlx);
 	mlx_hook(mlx->win, ClientMessage, LeaveWindowMask, &cross_press, mlx);

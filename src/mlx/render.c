@@ -6,23 +6,23 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:15:17 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 12:26:39 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:53:44 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	raycasting(t_mlx *mlx, t_map *data)
+int	raycasting(t_mlx *mlx, t_map *data, t_rayc *ray)
 {
 	int	x = 0;
 	while (x < WIDTH)
 	{
 		double	cameraX = 2 * x / (double)WIDTH - 1;
-		double	rayDirX = data->dirX + data->planeX * cameraX;
-		double	rayDirY = data->dirY + data->planeY * cameraX;
+		double	rayDirX = ray->dirX + ray->planeX * cameraX;
+		double	rayDirY = ray->dirY + ray->planeY * cameraX;
 
-		int	mapX = (int)data->posX;
-		int	mapY = (int)data->posY;
+		int	mapX = (int)ray->posX;
+		int	mapY = (int)ray->posY;
 
 		double deltaDistX;
 		if (!rayDirX)
@@ -47,22 +47,22 @@ int	raycasting(t_mlx *mlx, t_map *data)
 		if (rayDirX < 0)
 		{
 			stepX = -1;
-			sideDistX = (data->posX - mapX) * deltaDistX;
+			sideDistX = (ray->posX - mapX) * deltaDistX;
 		}
 		else
 		{
 			stepX = 1;
-			sideDistX = (mapX + 1.0 - data->posX) * deltaDistX;
+			sideDistX = (mapX + 1.0 - ray->posX) * deltaDistX;
 		}
 		if (rayDirY < 0)
 		{
 			stepY = -1;
-			sideDistY = (data->posY - mapY) * deltaDistY;
+			sideDistY = (ray->posY - mapY) * deltaDistY;
 		}
 		else
 		{
 			stepY = 1;
-			sideDistY = (mapY + 1.0 - data->posY) * deltaDistY;
+			sideDistY = (mapY + 1.0 - ray->posY) * deltaDistY;
 		}
 
 		int	hit = 0;
@@ -97,8 +97,8 @@ int	raycasting(t_mlx *mlx, t_map *data)
 		if(drawEnd >= HEIGHT) drawEnd = HEIGHT - 1;
 
 		double	wallX;
-		if (side == 0)	wallX = data->posY + perpWallDist * rayDirY;
-		else			wallX = data->posX + perpWallDist * rayDirX;
+		if (side == 0)	wallX = ray->posY + perpWallDist * rayDirY;
+		else			wallX = ray->posX + perpWallDist * rayDirX;
 		wallX -= floor((wallX));
 
 		int	texX = (int)(wallX * mlx->textures[0].width);
@@ -142,7 +142,7 @@ int	raycasting(t_mlx *mlx, t_map *data)
 
 int	render_screen(t_mlx *mlx)
 {
-	raycasting(mlx, mlx->data);
+	raycasting(mlx, mlx->data, mlx->ray);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->screen.img, 0, 0);
 	return (0);
 }

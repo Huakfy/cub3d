@@ -6,35 +6,35 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:05:27 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 12:38:49 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:52:24 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 //Norm
-static void	movement(int keysym, t_map *d)
+static void	movement(int keysym, t_map *data, t_rayc *d)
 {
 	if (keysym == FRONT)
 	{
-		if (d->map[coord_to_pos(d->posX + d->dirX * MOVSTEP, d->posY + d->dirY\
-		 * MOVSTEP, d->nb_col)] == '1')
+		if (data->map[coord_to_pos(d->posX + d->dirX * MOVSTEP, d->posY + \
+		d->dirY * MOVSTEP, data->nb_col)] == '1')
 			return ;
 		d->posX += d->dirX * MOVSTEP;
 		d->posY += d->dirY * MOVSTEP;
 	}
 	else if (keysym == BACK)
 	{
-		if (d->map[coord_to_pos(d->posX - d->dirX * MOVSTEP, d->posY - d->dirY\
-		 * MOVSTEP, d->nb_col)] == '1')
+		if (data->map[coord_to_pos(d->posX - d->dirX * MOVSTEP, d->posY - \
+		d->dirY * MOVSTEP, data->nb_col)] == '1')
 			return ;
 		d->posX -= d->dirX * MOVSTEP;
 		d->posY -= d->dirY * MOVSTEP;
 	}
 	else if (keysym == LEFT)
 	{
-		if (d->map[coord_to_pos(d->posX - d->planeX * MOVSTEP, d->posY - \
-		d->planeY * MOVSTEP, d->nb_col)] == '1')
+		if (data->map[coord_to_pos(d->posX - d->planeX * MOVSTEP, d->posY - \
+		d->planeY * MOVSTEP, data->nb_col)] == '1')
 				return ;
 		d->posX -= d->planeX * MOVSTEP;
 		d->posY -= d->planeY * MOVSTEP;
@@ -43,15 +43,15 @@ static void	movement(int keysym, t_map *d)
 }
 
 //Norm
-static void	movement2(int keysym, t_map *d)
+static void	movement2(int keysym, t_map *data, t_rayc *d)
 {
 	double	oldDirX;
 	double	oldPlaneX;
 
 	if (keysym == RIGHT)
 	{
-		if (d->map[coord_to_pos(d->posX + d->planeX * MOVSTEP, d->posY + \
-		d->planeY * MOVSTEP, d->nb_col)] == '1')
+		if (data->map[coord_to_pos(d->posX + d->planeX * MOVSTEP, d->posY + \
+		d->planeY * MOVSTEP, data->nb_col)] == '1')
 			return ;
 		d->posX += d->planeX * MOVSTEP;
 		d->posY += d->planeY * MOVSTEP;
@@ -69,17 +69,17 @@ static void	movement2(int keysym, t_map *d)
 
 int	handle_keypress(int keysym, t_mlx *mlx)
 {
-	t_map	*d;
+	t_rayc	*d;
 	double	oldDirX;
 	double	oldPlaneX;
 
-	d = mlx->data;
+	d = mlx->ray;
 	if (keysym == XK_Escape)
 		return (mlx_loop_end(mlx->ptr));
 	if (keysym == FRONT || keysym == BACK || keysym == LEFT)
-		movement(keysym, d);
+		movement(keysym, mlx->data, d);
 	else if (keysym == RIGHT || keysym == RLEFT)
-		movement2(keysym, d);
+		movement2(keysym, mlx->data, d);
 	else if (keysym == RRIGHT)
 	{
 		oldDirX = d->dirX;

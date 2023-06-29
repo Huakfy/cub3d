@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 12:16:13 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:45:55 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,9 @@ int	main(int argc, char **argv)
 {
 	t_map	data;
 	t_mlx	mlx;
+	t_rayc	ray;
 
-	init_all(&data, &mlx);
+	init_all(&data, &mlx, &ray);
 	if (parsing(&data, argc, argv, &mlx))
 		return (free_all(&data, &mlx, 1));
 	if (start_cub3D(&mlx, &data))

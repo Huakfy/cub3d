@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 12:38:27 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 12:46:59 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,17 @@ typedef struct s_map
 	char	*map;
 	int		start_pos;
 	char	start_dir;
+}	t_map;
+
+typedef struct s_rayc
+{
 	double	posX;
 	double	posY;
 	double	dirX;
 	double	dirY;
 	double	planeX;
 	double	planeY;
-}	t_map;
+}	t_rayc;
 
 typedef struct s_img
 {
@@ -114,6 +118,7 @@ typedef struct s_mlx
 	int				FC[2];
 	t_map			*data;
 	unsigned int	frames;
+	t_rayc			*ray;
 }	t_mlx;
 
 //PARSING
@@ -144,7 +149,7 @@ int		start_cub3D(t_mlx *mlx,t_map *data);
 //
 int		print_err(char *fi, int li, const char *fu, char *str);
 //data_utils.c
-void	init_all(t_map *data, t_mlx *mlx);
+void	init_all(t_map *data, t_mlx *mlx, t_rayc *ray);
 int		free_all(t_map *data, t_mlx *mlx, int ret);
 //convert_pos_x_y.c
 int		pos_to_x(int pos, int row_len);
