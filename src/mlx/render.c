@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:15:17 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 11:17:37 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 11:36:33 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,13 @@ int	raycasting(t_mlx *mlx, t_map *data)
 
 		//int	color = 16777215;
 		//if (side == 1) {color = color / 2;}
+		if (side == 0 && rayDirX > 0)
+			side = 1;
+		else if (side == 1 && rayDirY > 0)
+			side = 2;
+		else if (side == 1 && rayDirY < 0)
+			side = 3;
+
 		for (int y = 0; y < HEIGHT; y++)
 		{
 			if (y < drawStart)
@@ -132,8 +139,12 @@ int	raycasting(t_mlx *mlx, t_map *data)
 
 			if (side == 0)
 				color = *(unsigned int *)(mlx->textures[0].addr + (mlx->textures[0].line_len * texY + texX * (mlx->textures[0].bpp / 8)));
-			if (side == 1)
+			else if (side == 1)
 				color = *(unsigned int *)(mlx->textures[1].addr + (mlx->textures[1].line_len * texY + texX * (mlx->textures[1].bpp / 8)));
+			else if (side == 2)
+				color = *(unsigned int *)(mlx->textures[2].addr + (mlx->textures[2].line_len * texY + texX * (mlx->textures[2].bpp / 8)));
+			else if (side == 3)
+				color = *(unsigned int *)(mlx->textures[3].addr + (mlx->textures[3].line_len * texY + texX * (mlx->textures[3].bpp / 8)));
 			img_pix_put(&mlx->screen, x, y, color);
 		}
 		x++;
