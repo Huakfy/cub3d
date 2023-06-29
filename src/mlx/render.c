@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:15:17 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 10:48:05 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 11:08:44 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,16 +114,24 @@ int	raycasting(t_mlx *mlx, t_map *data)
 
 		//int	color = 16777215;
 		//if (side == 1) {color = color / 2;}
-
-		for (int y = drawStart; y < drawEnd; y++)
+		for (int y = 0; y < HEIGHT; y++)
 		{
+			if (y < drawStart)
+			{
+				img_pix_put(&mlx->screen, x, y, mlx->FC[1]);
+				continue;
+			}
+			else if (y > drawEnd)
+			{
+				img_pix_put(&mlx->screen, x, y, mlx->FC[0]);
+				continue;
+			}
 			int	texY = (int)texPos & (mlx->textures[0].height - 1);
 			texPos += step;
 			int	color;
 			if (side == 0)
 				color = get_img_color(&mlx->textures[0], pos_to_x(mlx->textures[0].height * texY + texX, mlx->textures[0].width), pos_to_y(mlx->textures[0].height * texY + texX, mlx->textures[0].width));
 			if (side == 1)
-			//color = color >> 1 & (mlx->textures[0].height - 1);
 				color = get_img_color(&mlx->textures[1], pos_to_x(mlx->textures[1].height * texY + texX, mlx->textures[1].width), pos_to_y(mlx->textures[1].height * texY + texX, mlx->textures[1].width));
 			img_pix_put(&mlx->screen, x, y, color);
 		}
@@ -134,18 +142,6 @@ int	raycasting(t_mlx *mlx, t_map *data)
 
 int	render_screen(t_mlx *mlx)
 {
-	int	y = 0, x = 0;
-	while (y < WIDTH){
-		x = 0;
-		while (x < HEIGHT){
-			if (x < HEIGHT / 2)
-				img_pix_put(&mlx->screen, y, x, mlx->FC[1]);
-			else
-				img_pix_put(&mlx->screen, y, x, mlx->FC[0]);
-			x++;
-		}
-		y++;
-	}
 	raycasting(mlx, mlx->data);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->screen.img, 0, 0);
 	return (0);
