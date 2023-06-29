@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 13:56:18 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 14:01:55 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ typedef struct s_rayc
 	int		texX;
 	double	step;
 	double	texPos;
-	//
+	//norm5
 	int		texY;
 	int		color;
 }	t_rayc;
