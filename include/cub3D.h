@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 12:46:59 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/29 13:56:18 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,34 @@ typedef struct s_rayc
 	double	dirY;
 	double	planeX;
 	double	planeY;
+	//norm1
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	int		mapX;
+	int		mapY;
+	double	deltaDistX;
+	double	deltaDistY;
+	//norm2
+	double	sideDistX;
+	double	sideDistY;
+	int		stepX;
+	int		stepY;
+	//norm3
+	int		hit;
+	int		side;
+	double	perpWallDist;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+	//norm4
+	double	wallX;
+	int		texX;
+	double	step;
+	double	texPos;
+	//
+	int		texY;
+	int		color;
 }	t_rayc;
 
 typedef struct s_img
