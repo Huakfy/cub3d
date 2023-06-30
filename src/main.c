@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 12:45:55 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 12:17:47 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	free_unneeded(int i, t_map *data)
 //PARSING
 //✓ Check if 1 arg
 //✓ Check if filename ends in ."cub"
-//✓ Read file and put into string								!!!(Maybe comeback to it for stdin)!!!
+//✓ Read file and put into string
 //✓ Check if one and only one texture for each type NO SO WE EA F C (skip spaces not isspace)
 //✓ Check if only valid characters in map 0 1 N S E W space
 //✓ Check if map is closed
@@ -89,7 +89,6 @@ int	parsing(t_map *data, int argc, char **argv, t_mlx *mlx)
 	return (0);
 }
 
-//Verify all textures have the same height and width
 int	main(int argc, char **argv)
 {
 	t_map	data;

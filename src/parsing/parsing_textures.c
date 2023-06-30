@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:16:10 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 12:43:55 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 12:16:40 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,51 +25,42 @@ int	wrong_filename(char *filename)
 	return (0);
 }
 
-//Goes 1 by 1 char throug the file to get its length
-static int	len_map(char *filename) //revoir si stdin
+static int	read_loop(t_map *data, int fd)
 {
-	int		i;
-	int		fd;
-	int		rd;
-	char	garbage[1];
+	char	*rd;
+	char	*tmp;
 
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		return (print_err(__FILE__, __LINE__, __func__, OPEN));
-	i = 0;
-	rd = 1;
-	while (rd)
+	while (1)
 	{
-		rd = read(fd, garbage, 1);
-		if (rd == -1)
-			return (print_err(__FILE__, __LINE__, __func__, READ));
-		++i;
+		rd = get_next_line(fd);
+		if (!rd)
+			break;
+		if (!data->file)
+			data->file = rd;
+		else
+		{
+			tmp = ft_strjoin(data->file, rd);
+			free(rd);
+			free(data->file);
+			data->file = tmp;
+		}
+		if (!data->file)
+			return (print_err(__FILE__, __LINE__, __func__, MALLOC));
 	}
-	if (close(fd) == -1)
-		return (print_err(__FILE__, __LINE__, __func__, CLOSE));
-	if (i == 1)
-		return (print_err(__FILE__, __LINE__, __func__, EMPTY));
-	return (i - 1);
+	return (0);
 }
 
-//Gets file content and put it in data->file
-int	read_file(char *filename, t_map *data) //revoir si stdin
+int	read_file(char *filename, t_map *data)
 {
-	int	len;
-	int	fd;
+	int		fd;
 
-	len = len_map(filename);
-	if (len == 1)
-		return (1);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (print_err(__FILE__, __LINE__, __func__, OPEN));
-	data->file = malloc(sizeof(char) * (len + 1));
+	read_loop(data, fd);
+	get_next_line(-1);
 	if (!data->file)
 		return (print_err(__FILE__, __LINE__, __func__, MALLOC));
-	if (read(fd, data->file, len) == -1)
-		return (print_err(__FILE__, __LINE__, __func__, READ));
-	data->file[len] = '\0';
 	if (close(fd) == -1)
 	{
 		free(data->file);
