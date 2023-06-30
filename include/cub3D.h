@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 11:51:02 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 14:54:11 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@
 # define ROTSTEP	0.05
 
 //Mlx
-# define WIDTH	800
-# define HEIGHT	600
-# define NAME	"cub3D"
+# define WIDTH			2560
+# define HEIGHT			1440
+# define NAME			"cub3D"
+# define REFRESH_RATE	1000
 
 //Errors
 # define ARG_NBR		"Need filename as argument\nExample: ./cub3D map.cub"
@@ -165,8 +166,9 @@ int		get_textures(t_map *data, t_mlx *mlx);
 int		init_mlx(t_mlx *mlx);
 
 //MLX
-//mlx_utils.c
+//movement.c
 int		handle_keypress(int keysym, t_mlx *mlx);
+//mlx_utils.c
 int		cross_press(t_mlx *mlx);
 void	img_pix_put(t_img *img, int x, int y, unsigned int color);
 //render.c

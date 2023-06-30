@@ -17,7 +17,7 @@ INCLUDE	=	-I ./include -I ./libft/src -I $(PATH_MLX)
 HEADER	=	include/cub3D.h
 
 # Source
-FILES	=	main parsing_textures data_utils parsing_map convert_pos_x_y parsing_mlx mlx_utils render start_cub3D
+FILES	=	main parsing_textures data_utils parsing_map convert_pos_x_y parsing_mlx mlx_utils render start_cub3D movement
 
 SRCS	=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 OBJS	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))

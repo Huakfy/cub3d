@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:06:48 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 12:55:10 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 14:19:17 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	constant_loop(t_mlx *mlx)
 {
 	mlx->frames++;
-	if (mlx->frames % 1000 == 0)
+	if (mlx->frames % REFRESH_RATE == 0)
 		render_screen(mlx);
 	return (0);
 }
