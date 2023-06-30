@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 14:54:11 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 15:35:53 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 # define RLEFT	XK_Left
 //Moving and rotation speed
 # define MOVSTEP	0.25
-# define ROTSTEP	0.05
+# define ROTSTEP	0.1
 
 //Mlx
-# define WIDTH			2560
-# define HEIGHT			1440
+# define WIDTH			2048
+# define HEIGHT			1536
 # define NAME			"cub3D"
 # define REFRESH_RATE	1000
 
@@ -90,40 +90,40 @@ typedef struct s_map
 
 typedef struct s_rayc
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
+	double			posX;
+	double			posY;
+	double			dirX;
+	double			dirY;
+	double			planeX;
+	double			planeY;
 	//norm1
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	int		mapX;
-	int		mapY;
-	double	deltaDistX;
-	double	deltaDistY;
+	double			cameraX;
+	double			rayDirX;
+	double			rayDirY;
+	int				mapX;
+	int				mapY;
+	double			deltaDistX;
+	double			deltaDistY;
 	//norm2
-	double	sideDistX;
-	double	sideDistY;
-	int		stepX;
-	int		stepY;
+	double			sideDistX;
+	double			sideDistY;
+	int				stepX;
+	int				stepY;
 	//norm3
-	int		hit;
-	int		side;
-	double	perpWallDist;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
+	int				hit;
+	int				side;
+	double			perpWallDist;
+	int				lineHeight;
+	int				drawStart;
+	int				drawEnd;
 	//norm4
-	double	wallX;
-	int		texX;
-	double	step;
-	double	texPos;
+	double			wallX;
+	int				texX;
+	double			step;
+	double			texPos;
 	//norm5
-	int		texY;
-	int		color;
+	int				texY;
+	unsigned int	color;
 }	t_rayc;
 
 typedef struct s_img

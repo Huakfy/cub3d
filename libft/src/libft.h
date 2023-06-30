@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 // # include <bsd/string.h>
-# include <stdio.h>
 # include <unistd.h>
 # include "get_next_line.h"
 
