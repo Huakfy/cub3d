@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:45:06 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 12:47:42 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 18:27:52 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ static void	init_tmlx(t_map *data, t_mlx *mlx, t_rayc *ray)
 	mlx->data = data;
 	mlx->frames = 0;
 	mlx->ray = ray;
+
+	mlx->front = 0;
+	mlx->back = 0;
+	mlx->left = 0;
+	mlx->right = 0;
+	mlx->rleft = 0;
+	mlx->rright = 0;
 }
 
 void	init_all(t_map *data, t_mlx *mlx, t_rayc *ray)

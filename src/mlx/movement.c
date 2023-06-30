@@ -6,14 +6,14 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:53:26 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 16:15:59 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 18:42:17 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 //Norm
-static void	movement(int keysym, t_map *data, t_rayc *d)
+void	movement(int keysym, t_map *data, t_rayc *d)
 {
 	if (keysym == FRONT)
 	{
@@ -40,7 +40,7 @@ static void	movement(int keysym, t_map *data, t_rayc *d)
 }
 
 //Norm
-static void	movement2(int keysym, t_map *data, t_rayc *d)
+void	movement2(int keysym, t_map *data, t_rayc *d)
 {
 	if (keysym == LEFT)
 	{
@@ -67,7 +67,7 @@ static void	movement2(int keysym, t_map *data, t_rayc *d)
 }
 
 //Norm
-static void	movement3(int keysym, t_rayc *d)
+void	movement3(int keysym, t_rayc *d)
 {
 	double	oldDirX;
 	double	oldPlaneX;
@@ -94,16 +94,37 @@ static void	movement3(int keysym, t_rayc *d)
 
 int	handle_keypress(int keysym, t_mlx *mlx)
 {
-	t_rayc	*d;
-
-	d = mlx->ray;
 	if (keysym == XK_Escape)
 		return (mlx_loop_end(mlx->ptr));
-	if (keysym == FRONT || keysym == BACK)
-		movement(keysym, mlx->data, d);
-	else if (keysym == LEFT || keysym == RIGHT)
-		movement2(keysym, mlx->data, d);
-	else if (keysym == RLEFT || keysym == RRIGHT)
-		movement3(keysym, d);
+
+	if (keysym == FRONT)
+		mlx->front = 1;
+	else if (keysym == BACK)
+		mlx->back = 1;
+	else if (keysym == LEFT)
+		mlx->left = 1;
+	else if (keysym == RIGHT)
+		mlx->right = 1;
+	else if (keysym == RLEFT)
+		mlx->rleft = 1;
+	else if (keysym == RRIGHT)
+		mlx->rright = 1;
+	return (0);
+}
+
+int	handle_keyrelease(int keysym, t_mlx *mlx)
+{
+	if (keysym == FRONT)
+		mlx->front = 0;
+	else if (keysym == BACK)
+		mlx->back = 0;
+	else if (keysym == LEFT)
+		mlx->left = 0;
+	else if (keysym == RIGHT)
+		mlx->right = 0;
+	else if (keysym == RLEFT)
+		mlx->rleft = 0;
+	else if (keysym == RRIGHT)
+		mlx->rright = 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:06:48 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 14:19:17 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 18:43:36 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,21 @@ static int	constant_loop(t_mlx *mlx)
 	mlx->frames++;
 	if (mlx->frames % REFRESH_RATE == 0)
 		render_screen(mlx);
+	if (mlx->frames % REFRESH_RATE_MOVE == 0)
+	{
+		if (mlx->front)
+			movement(FRONT, mlx->data, mlx->ray);
+		if (mlx->back)
+			movement(BACK, mlx->data, mlx->ray);
+		if (mlx->left)
+			movement2(LEFT, mlx->data, mlx->ray);
+		if (mlx->right)
+			movement2(RIGHT, mlx->data, mlx->ray);
+		if (mlx->rleft)
+			movement3(RLEFT, mlx->ray);
+		if (mlx->rright)
+			movement3(RRIGHT, mlx->ray);
+	}
 	return (0);
 }
 
@@ -53,6 +68,7 @@ int	start_cub3D(t_mlx *mlx,t_map *data)
 	init_mlx_values(mlx->ray, data);
 	mlx_loop_hook(mlx->ptr, &constant_loop, mlx);
 	mlx_hook(mlx->win, KeyPress, KeyPressMask, &handle_keypress, mlx);
+	mlx_hook(mlx->win, KeyRelease, KeyReleaseMask, &handle_keyrelease, mlx);
 	mlx_hook(mlx->win, ClientMessage, LeaveWindowMask, &cross_press, mlx);
 	mlx_loop(mlx->ptr);
 	return (0);

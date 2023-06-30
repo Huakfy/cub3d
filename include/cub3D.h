@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 15:49:07 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 18:44:41 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@
 # define RRIGHT	XK_Right
 # define RLEFT	XK_Left
 //Moving and rotation speed
-# define MOVSTEP	0.25
-# define ROTSTEP	0.1
+# define MOVSTEP	0.15
+# define ROTSTEP	0.05
 
 //Mlx
-# define WIDTH			1920
-# define HEIGHT			1080
-# define NAME			"cub3D"
-# define REFRESH_RATE	1000
+# define WIDTH				1920
+# define HEIGHT				1080
+# define NAME				"cub3D"
+# define REFRESH_RATE		1000
+# define REFRESH_RATE_MOVE	600
 
 //Errors
 # define ARG_NBR		"Need filename as argument\nExample: ./cub3D map.cub"
@@ -146,9 +147,15 @@ typedef struct s_mlx
 	t_img			screen;
 	t_img			textures[4];
 	int				FC[2];
-	t_map			*data;
 	unsigned int	frames;
+	t_map			*data;
 	t_rayc			*ray;
+	int				front;
+	int				back;
+	int				left;
+	int				right;
+	int				rleft;
+	int				rright;
 }	t_mlx;
 
 //PARSING
@@ -168,6 +175,10 @@ int		init_mlx(t_mlx *mlx);
 //MLX
 //movement.c
 int		handle_keypress(int keysym, t_mlx *mlx);
+int		handle_keyrelease(int keysym, t_mlx *mlx);
+void	movement(int keysym, t_map *data, t_rayc *d);
+void	movement2(int keysym, t_map *data, t_rayc *d);
+void	movement3(int keysym, t_rayc *d);
 //mlx_utils.c
 int		cross_press(t_mlx *mlx);
 void	img_pix_put(t_img *img, int x, int y, unsigned int color);
