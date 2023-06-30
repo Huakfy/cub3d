@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:53:26 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 16:14:48 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 16:15:59 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	movement(int keysym, t_map *data, t_rayc *d)
 		MOVSTEP, d->posY, data->nb_col)] != ' ')
 			d->posX -= d->dirX * MOVSTEP;
 		if (data->map[coord_to_pos(d->posX, d->posY - d->dirY * MOVSTEP, \
-		data->nb_col)] != '1' || data->map[coord_to_pos(d->posX, d->posY - \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX, d->posY - \
 		d->dirY * MOVSTEP, data->nb_col)] != ' ')
 			d->posY -= d->dirY * MOVSTEP;
 	}
