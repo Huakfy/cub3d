@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:15:17 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 16:43:30 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 19:44:44 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,25 +101,25 @@ static void	norm4(t_rayc *ray)
 
 static void	norm5(t_rayc *ray, t_mlx *mlx)
 {
-	if (ray->side == 0 && ray->rayDirX < 0)
+	if (ray->side == 1 && ray->rayDirY < 0)
 	{
 		ray->texX = mlx->textures[0].width - ray->texX - 1;
 		ray->texX = (int)(ray->wallX * mlx->textures[0].width);
 		ray->side = 0;
 	}
-	else if (ray->side == 0 && ray->rayDirX > 0)
+	else if (ray->side == 1 && ray->rayDirY > 0)
 	{
 		ray->texX = mlx->textures[1].width - ray->texX - 1;
 		ray->texX = (int)(ray->wallX * mlx->textures[1].width);
 		ray->side = 1;
 	}
-	else if (ray->side == 1 && ray->rayDirY > 0)
+	else if (ray->side == 0 && ray->rayDirX < 0)
 	{
 		ray->texX = mlx->textures[2].width - ray->texX - 1;
 		ray->texX = (int)(ray->wallX * mlx->textures[2].width);
 		ray->side = 2;
 	}
-	else if (ray->side == 1 && ray->rayDirY < 0)
+	else if (ray->side == 0 && ray->rayDirX > 0)
 	{
 		ray->texX = mlx->textures[3].width - ray->texX - 1;
 		ray->texX = (int)(ray->wallX * mlx->textures[3].width);
