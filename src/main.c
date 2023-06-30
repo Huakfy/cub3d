@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:09:18 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 12:17:47 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 12:19:47 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	print_err(char *fi, int li, const char *fu, char *str)
 	return (1);
 }
 
-
+//Free unneded data
 static void	free_unneeded(int i, t_map *data)
 {
 	int	j;

@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:16:10 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 12:16:40 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 12:35:36 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static int	fname(t_map *data, int *i, int skip, int text)
 	return (0);
 }
 
-//Get each texture path (Fuck la norme)
+//Get each texture path
 int	get_texture_paths(t_map *data)
 {
 	int	i;
