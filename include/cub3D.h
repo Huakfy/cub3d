@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/29 14:01:55 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 11:51:02 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 # define WIN_INIT		"Mlx new window failed"
 # define IMG_INIT		"Mlx new image failed"
 # define XPM_IMG		"Mlx xpm file to image failed"
+# define XPM_IMG_SIZE	"Textures aren't all the same size"
 # define FLCE			"Wrong format for floor or ceiling expected (0,0,0 to 255,255,255)"
 
 //Colors
