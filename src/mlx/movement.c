@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:53:26 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 14:53:33 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 16:14:48 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,25 @@ static void	movement(int keysym, t_map *data, t_rayc *d)
 {
 	if (keysym == FRONT)
 	{
-		if (data->map[coord_to_pos(d->posX + d->dirX * MOVSTEP, d->posY + \
-		d->dirY * MOVSTEP, data->nb_col)] == '1' || data->map[coord_to_pos(\
-		d->posX + d->dirX * MOVSTEP, d->posY + d->dirY * MOVSTEP, data->nb_col\
-		)] == ' ')
-			return ;
-		d->posX += d->dirX * MOVSTEP;
-		d->posY += d->dirY * MOVSTEP;
+		if (data->map[coord_to_pos(d->posX + d->dirX * MOVSTEP, d->posY, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX + d->dirX * \
+		MOVSTEP, d->posY, data->nb_col)] != ' ')
+			d->posX += d->dirX * MOVSTEP;
+		if (data->map[coord_to_pos(d->posX, d->posY + d->dirY * MOVSTEP, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX, d->posY + \
+		d->dirY * MOVSTEP, data->nb_col)] != ' ')
+			d->posY += d->dirY * MOVSTEP;
 	}
 	else if (keysym == BACK)
 	{
-		if (data->map[coord_to_pos(d->posX - d->dirX * MOVSTEP, d->posY - \
-		d->dirY * MOVSTEP, data->nb_col)] == '1' || data->map[coord_to_pos(\
-		d->posX - d->dirX * MOVSTEP, d->posY - d->dirY * MOVSTEP, data->nb_col\
-		)] == '1')
-			return ;
-		d->posX -= d->dirX * MOVSTEP;
-		d->posY -= d->dirY * MOVSTEP;
+		if (data->map[coord_to_pos(d->posX - d->dirX * MOVSTEP, d->posY, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX - d->dirX * \
+		MOVSTEP, d->posY, data->nb_col)] != ' ')
+			d->posX -= d->dirX * MOVSTEP;
+		if (data->map[coord_to_pos(d->posX, d->posY - d->dirY * MOVSTEP, \
+		data->nb_col)] != '1' || data->map[coord_to_pos(d->posX, d->posY - \
+		d->dirY * MOVSTEP, data->nb_col)] != ' ')
+			d->posY -= d->dirY * MOVSTEP;
 	}
 }
 
@@ -42,23 +44,25 @@ static void	movement2(int keysym, t_map *data, t_rayc *d)
 {
 	if (keysym == LEFT)
 	{
-		if (data->map[coord_to_pos(d->posX - d->planeX * MOVSTEP, d->posY - \
-		d->planeY * MOVSTEP, data->nb_col)] == '1' || data->map[coord_to_pos(\
-		d->posX - d->planeX * MOVSTEP, d->posY - d->planeY * MOVSTEP, \
-		data->nb_col)] == ' ')
-				return ;
-		d->posX -= d->planeX * MOVSTEP;
-		d->posY -= d->planeY * MOVSTEP;
+		if (data->map[coord_to_pos(d->posX - d->planeX * MOVSTEP, d->posY, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX - d->planeX * \
+		MOVSTEP, d->posY, data->nb_col)] != ' ')
+			d->posX -= d->planeX * MOVSTEP;
+		if (data->map[coord_to_pos(d->posX, d->posY - d->planeY * MOVSTEP, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX, d->posY - \
+		d->planeY * MOVSTEP, data->nb_col)] != ' ')
+			d->posY -= d->planeY * MOVSTEP;
 	}
 	else if (keysym == RIGHT)
 	{
-		if (data->map[coord_to_pos(d->posX + d->planeX * MOVSTEP, d->posY + \
-		d->planeY * MOVSTEP, data->nb_col)] == '1' || data->map[coord_to_pos(\
-		d->posX + d->planeX * MOVSTEP, d->posY + d->planeY * MOVSTEP, \
-		data->nb_col)] == ' ')
-			return ;
-		d->posX += d->planeX * MOVSTEP;
-		d->posY += d->planeY * MOVSTEP;
+		if (data->map[coord_to_pos(d->posX + d->planeX * MOVSTEP, d->posY, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX + d->planeX * \
+		MOVSTEP, d->posY, data->nb_col)] != ' ')
+			d->posX += d->planeX * MOVSTEP;
+		if (data->map[coord_to_pos(d->posX, d->posY + d->planeY * MOVSTEP, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX, d->posY + \
+		d->planeY * MOVSTEP, data->nb_col)] != ' ')
+			d->posY += d->planeY * MOVSTEP;
 	}
 }
 

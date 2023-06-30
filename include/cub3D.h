@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 15:35:53 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 15:49:07 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define ROTSTEP	0.1
 
 //Mlx
-# define WIDTH			2048
-# define HEIGHT			1536
+# define WIDTH			1920
+# define HEIGHT			1080
 # define NAME			"cub3D"
 # define REFRESH_RATE	1000
 
