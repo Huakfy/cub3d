@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:47:08 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/25 12:43:40 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/06/30 23:01:57 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int	invalid_char(t_map *data)
 	int	i;
 
 	i = data->txt_end;
-	while (data->file[i] && ((9 <= data->file[i] && data->file[i] <= 13) || \
-	data->file[i] == 20))
+	while (data->file[i] && data->file[i] == '\n')
 		i++;
 	data->txt_end = i;
 	while (data->file[i])
