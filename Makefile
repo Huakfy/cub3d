@@ -21,7 +21,7 @@ FILES	=	main parsing_textures data_utils parsing_map convert_pos_x_y parsing_mlx
 SRCS	=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 OBJS	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
 
-FILES_B	=	main parsing_textures data_utils parsing_map convert_pos_x_y parsing_mlx mlx_utils render_bonus start_cub3D movement
+FILES_B	=	main parsing_textures data_utils parsing_map convert_pos_x_y parsing_mlx mlx_utils render_bonus start_cub3D_bonus movement
 SRCS_B	=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES_B)))
 OBJS_B	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_B)))
 
