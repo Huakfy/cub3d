@@ -18,9 +18,12 @@ HEADER	=	include/cub3D.h
 
 # Source
 FILES	=	main parsing_textures data_utils parsing_map convert_pos_x_y parsing_mlx mlx_utils render start_cub3D movement
-
 SRCS	=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 OBJS	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
+
+FILES_B	=	main parsing_textures data_utils parsing_map convert_pos_x_y parsing_mlx mlx_utils render_bonus start_cub3D movement
+SRCS_B	=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES_B)))
+OBJS_B	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_B)))
 
 OBJF	=	.cache_exits
 
@@ -28,7 +31,7 @@ $(OBJF) :
 	@mkdir -p $(OBJ_DIR)
 
 # Add the path to the builtin folder to vpath
-vpath %.c $(SRC_DIR) $(SRC_DIR)/parsing $(SRC_DIR)/utils $(SRC_DIR)/mlx
+vpath %.c $(SRC_DIR) $(SRC_DIR)/parsing $(SRC_DIR)/utils $(SRC_DIR)/mlx $(SRC_DIR)/bonus
 
 all : $(NAME)
 
@@ -44,7 +47,7 @@ $(OBJ_DIR)%.o : %.c $(HEADER) Makefile | $(OBJF)
 clean :
 	@make clean -sC $(DIRLIB)
 	@make clean -sC $(PATH_MLX)
-	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR) $(OBJS_B)
 	@rm -rf $(OBJF)
 	@echo "$(MAGENTA)$(NAME) objects cleaned !$(DEF_COLOR)"
 
@@ -57,7 +60,14 @@ fclean : clean
 re : fclean all
 	@echo "$(GREEN)Cleaned and rebuilt !$(DEF_COLOR)"
 
-.PHONY : all clean fclean re
+bonus : $(OBJS_B)
+	@make -C $(DIRLIB)
+	@make -C $(PATH_MLX)
+	$(CC) $(FLAG) $(OBJS_B) $(LDFLAGS) $(INCLUDE) -o $(NAME)
+	@echo "$(GREEN)$(NAME) bonus Compiled!$(DEF_COLOR)"
+
+
+.PHONY : all clean fclean re bonus
 
 # Color
 DEF_COLOR	= \033[0;39m
