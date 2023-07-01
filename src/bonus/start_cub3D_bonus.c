@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:06:48 by mjourno           #+#    #+#             */
-/*   Updated: 2023/07/01 17:33:48 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/01 17:36:05 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ static int	constant_loop(t_mlx *mlx)
 			movement3(RLEFT, mlx->ray);
 		if (mlx->rright)
 			movement3(RRIGHT, mlx->ray);
+
+		int	x;
+		int	y;
+
+		mlx_mouse_get_pos(mlx->ptr, mlx->win, &x, &y);
+		if (x < WIDTH / 2 - 1)
+			movement3(RLEFT, mlx->ray);
+		else if (x > WIDTH / 2)
+			movement3(RRIGHT, mlx->ray);
+		mlx_mouse_move(mlx->ptr, mlx->win, (WIDTH / 2) - 1, (HEIGHT / 2) - 1);
 	}
-
-	int	x;
-	int	y;
-
-	mlx_mouse_get_pos(mlx->ptr, mlx->win, &x, &y);
-	if (x < WIDTH / 2 - 1)
-		movement3(RLEFT, mlx->ray);
-	else if (x > WIDTH / 2)
-		movement3(RRIGHT, mlx->ray);
-	mlx_mouse_move(mlx->ptr, mlx->win, (WIDTH / 2) - 1, (HEIGHT / 2) - 1);
 	return (0);
 }
 
