@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:06:48 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 18:43:36 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/04 15:41:06 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static void	init_mlx_values(t_rayc *ray, t_map *data)
 	{
 		ray->dirY = 1;
 		ray->planeX = -0.66;
-
 	}
 	else if (data->start_dir == 'W')
 	{
@@ -59,11 +58,10 @@ static void	init_mlx_values(t_rayc *ray, t_map *data)
 	{
 		ray->dirX = 1;
 		ray->planeY = 0.66;
-
 	}
 }
 
-int	start_cub3D(t_mlx *mlx,t_map *data)
+int	start_cub3d(t_mlx *mlx, t_map *data)
 {
 	init_mlx_values(mlx->ray, data);
 	mlx_loop_hook(mlx->ptr, &constant_loop, mlx);

@@ -1,4 +1,5 @@
 NAME	=	cub3D
+NAME_B	=	cub3D_B
 
 CC		=	cc
 FLAG	=	-Wall -Wextra -Werror -g3
@@ -17,11 +18,11 @@ INCLUDE	=	-I ./include -I ./libft/src -I $(PATH_MLX)
 HEADER	=	include/cub3D.h
 
 # Source
-FILES	=	main parsing_textures data_utils parsing_map convert_pos_x_y parsing_mlx mlx_utils render start_cub3D movement
+FILES	=	main parsing_textures data_utils parsing_map convert_pos_x_y parsing_mlx mlx_utils render render2 start_cub3D movement
 SRCS	=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 OBJS	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
 
-FILES_B	=	main parsing_textures data_utils parsing_map convert_pos_x_y parsing_mlx mlx_utils render_bonus start_cub3D_bonus movement
+FILES_B	=	main parsing_textures data_utils parsing_map convert_pos_x_y parsing_mlx mlx_utils render_bonus render_bonus2 start_cub3D_bonus movement
 SRCS_B	=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES_B)))
 OBJS_B	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_B)))
 
@@ -63,7 +64,7 @@ re : fclean all
 bonus : $(OBJS_B)
 	@make -C $(DIRLIB)
 	@make -C $(PATH_MLX)
-	$(CC) $(FLAG) $(OBJS_B) $(LDFLAGS) $(INCLUDE) -o $(NAME)
+	$(CC) $(FLAG) $(OBJS_B) $(LDFLAGS) $(INCLUDE) -o $(NAME_B)
 	@echo "$(GREEN)$(NAME) bonus Compiled!$(DEF_COLOR)"
 
 

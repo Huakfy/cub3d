@@ -6,11 +6,24 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:06:48 by mjourno           #+#    #+#             */
-/*   Updated: 2023/07/01 17:36:05 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:02:46 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	constant_loop2(t_mlx *mlx)
+{
+	int	x;
+	int	y;
+
+	mlx_mouse_get_pos(mlx->ptr, mlx->win, &x, &y);
+	if (x < WIDTH / 2 - 1)
+		movement3(RLEFT, mlx->ray);
+	else if (x > WIDTH / 2)
+		movement3(RRIGHT, mlx->ray);
+	mlx_mouse_move(mlx->ptr, mlx->win, (WIDTH / 2) - 1, (HEIGHT / 2) - 1);
+}
 
 static int	constant_loop(t_mlx *mlx)
 {
@@ -31,16 +44,7 @@ static int	constant_loop(t_mlx *mlx)
 			movement3(RLEFT, mlx->ray);
 		if (mlx->rright)
 			movement3(RRIGHT, mlx->ray);
-
-		int	x;
-		int	y;
-
-		mlx_mouse_get_pos(mlx->ptr, mlx->win, &x, &y);
-		if (x < WIDTH / 2 - 1)
-			movement3(RLEFT, mlx->ray);
-		else if (x > WIDTH / 2)
-			movement3(RRIGHT, mlx->ray);
-		mlx_mouse_move(mlx->ptr, mlx->win, (WIDTH / 2) - 1, (HEIGHT / 2) - 1);
+		constant_loop2(mlx);
 	}
 	return (0);
 }
@@ -58,7 +62,6 @@ static void	init_mlx_values(t_rayc *ray, t_map *data)
 	{
 		ray->dirY = 1;
 		ray->planeX = -0.66;
-
 	}
 	else if (data->start_dir == 'W')
 	{
@@ -69,11 +72,10 @@ static void	init_mlx_values(t_rayc *ray, t_map *data)
 	{
 		ray->dirX = 1;
 		ray->planeY = 0.66;
-
 	}
 }
 
-int	start_cub3D(t_mlx *mlx,t_map *data)
+int	start_cub3d(t_mlx *mlx, t_map *data)
 {
 	init_mlx_values(mlx->ray, data);
 	mlx_loop_hook(mlx->ptr, &constant_loop, mlx);

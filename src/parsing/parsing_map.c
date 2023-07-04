@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:47:08 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 23:01:57 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/04 15:52:25 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ static int	check_around(t_map *data, int i)
 
 	x = pos_to_x(i, data->nb_col);
 	y = pos_to_y(i, data->nb_col);
-
 	if (!ft_strchr("01NSWE", data->map[coord_to_pos(x - 1, y, data->nb_col)]))
 		return (1);
 	if (!ft_strchr("01NSWE", data->map[coord_to_pos(x + 1, y, data->nb_col)]))
@@ -143,4 +142,3 @@ int	closed_map(t_map *data)
 		return (print_err(__FILE__, __LINE__, __func__, NO_STRT));
 	return (0);
 }
-

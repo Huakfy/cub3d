@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/07/01 17:02:21 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:09:45 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 //Keys
 //Move
-# define FRONT	XK_z
+# define FRONT	XK_w
 # define BACK	XK_s
-# define LEFT	XK_q
+# define LEFT	XK_a
 # define RIGHT	XK_d
 //Rotate
 # define RRIGHT	XK_Right
@@ -33,7 +33,7 @@
 # define HEIGHT				1080
 # define NAME				"cub3D"
 # define REFRESH_RATE		1000
-# define REFRESH_RATE_MOVE	600
+# define REFRESH_RATE_MOVE	1500
 
 //Errors
 # define ARG_NBR		"Need filename as argument\nExample: ./cub3D map.cub"
@@ -184,8 +184,11 @@ int		cross_press(t_mlx *mlx);
 void	img_pix_put(t_img *img, int x, int y, unsigned int color);
 //render.c
 int		render_screen(t_mlx *mlx);
-//start_cub3D.c
-int		start_cub3D(t_mlx *mlx,t_map *data);
+//render2.c
+void	norm5(t_rayc *ray, t_mlx *mlx);
+void	norm6(t_rayc *ray, int x, t_mlx *mlx);
+//start_cub3d.c
+int		start_cub3d(t_mlx *mlx,t_map *data);
 
 //UTILS
 //
@@ -197,5 +200,9 @@ int		free_all(t_map *data, t_mlx *mlx, int ret);
 int		pos_to_x(int pos, int row_len);
 int		pos_to_y(int pos, int row_len);
 int		coord_to_pos(int x, int y, int row_len);
+
+//BONUS
+void	print_square(t_mlx *mlx, int color, int x, int y);
+void	minimap(t_map *data, t_mlx *mlx);
 
 #endif

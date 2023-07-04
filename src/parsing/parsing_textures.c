@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:16:10 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 12:35:36 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/04 15:56:50 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	read_loop(t_map *data, int fd)
 	{
 		rd = get_next_line(fd);
 		if (!rd)
-			break;
+			break ;
 		if (!data->file)
 			data->file = rd;
 		else
@@ -98,12 +98,12 @@ int	get_texture_paths(t_map *data)
 	while (data->file[i])
 	{
 		if ((!ft_strncmp(data->file + i, "NO", 2) && fname(data, &i, 2, 0)) \
-		|| (!ft_strncmp(data->file + i, "SO", 2) && fname(data, &i, 2, 1)) ||\
-		 (!ft_strncmp(data->file + i, "WE", 2) && fname(data, &i, 2, 2)) ||\
-		 (!ft_strncmp(data->file + i, "EA", 2) && fname(data, &i, 2, 3)) ||\
-		 (!ft_strncmp(data->file + i, "F", 1) && fname(data, &i, 1, 4)) ||\
-		 (!ft_strncmp(data->file + i, "C", 1) && fname(data, &i, 1, 5)))
-				return (1);
+		|| (!ft_strncmp(data->file + i, "SO", 2) && fname(data, &i, 2, 1)) || \
+		(!ft_strncmp(data->file + i, "WE", 2) && fname(data, &i, 2, 2)) || \
+		(!ft_strncmp(data->file + i, "EA", 2) && fname(data, &i, 2, 3)) || \
+		(!ft_strncmp(data->file + i, "F", 1) && fname(data, &i, 1, 4)) || \
+		(!ft_strncmp(data->file + i, "C", 1) && fname(data, &i, 1, 5)))
+			return (1);
 		else if (data->file[i])
 			i++;
 		if (!data->txt_end && data->textures[0] && data->textures[1] && \

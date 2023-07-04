@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 00:47:43 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/30 16:43:42 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/04 15:54:14 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	get_color(char *color)
 	if (j > 255 || i == 0)
 	{
 		print_err(__FILE__, __LINE__, __func__, FLCE);
-			return (-1);
+		return (-1);
 	}
 	return (j);
 }
@@ -51,7 +51,7 @@ static int	get_power_ten(int nb)
 
 //mlx->FC[k] gets color from RGB to int
 //return (red << 16 | green << 8 | blue);
-static int	get_FC(char *color, t_mlx *mlx, int k)
+static int	get_fc(char *color, t_mlx *mlx, int k)
 {
 	int	i;
 	int	j;
@@ -93,9 +93,9 @@ int	get_textures(t_map *data, t_mlx *mlx)
 		&mlx->textures[i].bpp, &mlx->textures[i].line_len, \
 		&mlx->textures[i].endian);
 	}
-	if (get_FC(data->textures[4], mlx, 0))
+	if (get_fc(data->textures[4], mlx, 0))
 		return (1);
-	if (get_FC(data->textures[5], mlx, 1))
+	if (get_fc(data->textures[5], mlx, 1))
 		return (1);
 	return (0);
 }
