@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 20:45:06 by mjourno           #+#    #+#             */
-/*   Updated: 2023/07/04 15:50:44 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/04 17:37:07 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	init_tmlx(t_map *data, t_mlx *mlx, t_rayc *ray)
 		mlx->screen.width = 0;
 		mlx->screen.height = 0;
 	}
-	mlx->FC[0] = 0;
-	mlx->FC[1] = 0;
+	mlx->fc[0] = 0;
+	mlx->fc[1] = 0;
 	mlx->data = data;
 	mlx->frames = 0;
 	mlx->ray = ray;
@@ -62,12 +62,12 @@ void	init_all(t_map *data, t_mlx *mlx, t_rayc *ray)
 	data->map = NULL;
 	data->start_pos = 0;
 	data->start_dir = 0;
-	ray->posX = 0;
-	ray->posY = 0;
-	ray->dirX = 0;
-	ray->dirY = 0;
-	ray->planeX = 0;
-	ray->planeY = 0;
+	ray->posx = 0;
+	ray->posy = 0;
+	ray->dirx = 0;
+	ray->diry = 0;
+	ray->planex = 0;
+	ray->planey = 0;
 	init_tmlx(data, mlx, ray);
 }
 

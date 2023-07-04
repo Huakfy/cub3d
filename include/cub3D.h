@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 11:10:11 by mjourno           #+#    #+#             */
-/*   Updated: 2023/07/04 16:09:45 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/04 17:38:20 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 //Keys
 //Move
-# define FRONT	XK_w
-# define BACK	XK_s
-# define LEFT	XK_a
-# define RIGHT	XK_d
+# define FRONT	0x0077
+# define BACK	0x0073
+# define LEFT	0x0061
+# define RIGHT	0x0064
 //Rotate
-# define RRIGHT	XK_Right
-# define RLEFT	XK_Left
+# define RRIGHT	0xff53
+# define RLEFT	0xff51
 //Moving and rotation speed
 # define MOVSTEP	0.15
 # define ROTSTEP	0.05
@@ -58,7 +58,7 @@
 # define IMG_INIT		"Mlx new image failed"
 # define XPM_IMG		"Mlx xpm file to image failed"
 # define XPM_IMG_SIZE	"Textures aren't all the same size"
-# define FLCE			"Wrong format for floor or ceiling expected (0,0,0 to 255,255,255)"
+# define FLCE			"Wrong format for floor or ceiling"
 
 //Colors
 # define DEF		"\033[0;39m"
@@ -91,39 +91,34 @@ typedef struct s_map
 
 typedef struct s_rayc
 {
-	double			posX;
-	double			posY;
-	double			dirX;
-	double			dirY;
-	double			planeX;
-	double			planeY;
-	//norm1
-	double			cameraX;
-	double			rayDirX;
-	double			rayDirY;
-	int				mapX;
-	int				mapY;
-	double			deltaDistX;
-	double			deltaDistY;
-	//norm2
-	double			sideDistX;
-	double			sideDistY;
-	int				stepX;
-	int				stepY;
-	//norm3
+	double			posx;
+	double			posy;
+	double			dirx;
+	double			diry;
+	double			planex;
+	double			planey;
+	double			camerax;
+	double			raydirx;
+	double			raydiry;
+	int				mapx;
+	int				mapy;
+	double			deltadistx;
+	double			deltadisty;
+	double			sidedistx;
+	double			sidedisty;
+	int				stepx;
+	int				stepy;
 	int				hit;
 	int				side;
-	double			perpWallDist;
-	int				lineHeight;
-	int				drawStart;
-	int				drawEnd;
-	//norm4
-	double			wallX;
-	int				texX;
+	double			perpwalldist;
+	int				lineheight;
+	int				drawstart;
+	int				drawend;
+	double			wallx;
+	int				texx;
 	double			step;
-	double			texPos;
-	//norm5
-	int				texY;
+	double			texpos;
+	int				texy;
 	unsigned int	color;
 }	t_rayc;
 
@@ -139,14 +134,14 @@ typedef struct s_img
 }	t_img;
 
 //textures: NO SO WE EA
-//FC color of Floor and Ceiling
+//fc color of Floor and Ceiling
 typedef struct s_mlx
 {
 	void			*ptr;
 	void			*win;
 	t_img			screen;
 	t_img			textures[4];
-	int				FC[2];
+	int				fc[2];
 	unsigned int	frames;
 	t_map			*data;
 	t_rayc			*ray;
@@ -188,7 +183,7 @@ int		render_screen(t_mlx *mlx);
 void	norm5(t_rayc *ray, t_mlx *mlx);
 void	norm6(t_rayc *ray, int x, t_mlx *mlx);
 //start_cub3d.c
-int		start_cub3d(t_mlx *mlx,t_map *data);
+int		start_cub3d(t_mlx *mlx, t_map *data);
 
 //UTILS
 //

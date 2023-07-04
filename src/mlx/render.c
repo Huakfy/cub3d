@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:15:17 by mjourno           #+#    #+#             */
-/*   Updated: 2023/07/04 16:05:30 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/04 17:36:18 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,46 @@
 
 static void	norm1(t_rayc *ray, int x)
 {
-	ray->cameraX = 2 * x / (double)WIDTH - 1;
-	ray->rayDirX = ray->dirX + ray->planeX * ray->cameraX;
-	ray->rayDirY = ray->dirY + ray->planeY * ray->cameraX;
-	ray->mapX = (int)ray->posX;
-	ray->mapY = (int)ray->posY;
-	if (!ray->rayDirX)
-		ray->deltaDistX = 1e30;
-	else if (ray->rayDirX < 0)
-		ray->deltaDistX = -1 * (1 / ray->rayDirX);
+	ray->camerax = 2 * x / (double)WIDTH - 1;
+	ray->raydirx = ray->dirx + ray->planex * ray->camerax;
+	ray->raydiry = ray->diry + ray->planey * ray->camerax;
+	ray->mapx = (int)ray->posx;
+	ray->mapy = (int)ray->posy;
+	if (!ray->raydirx)
+		ray->deltadistx = 1e30;
+	else if (ray->raydirx < 0)
+		ray->deltadistx = -1 * (1 / ray->raydirx);
 	else
-		ray->deltaDistX = 1 / ray->rayDirX;
-	if (!ray->rayDirY)
-		ray->deltaDistY = 1e30;
-	else if (ray->rayDirY < 0)
-		ray->deltaDistY = -1 * (1 / ray->rayDirY);
+		ray->deltadistx = 1 / ray->raydirx;
+	if (!ray->raydiry)
+		ray->deltadisty = 1e30;
+	else if (ray->raydiry < 0)
+		ray->deltadisty = -1 * (1 / ray->raydiry);
 	else
-		ray->deltaDistY = 1 / ray->rayDirY;
+		ray->deltadisty = 1 / ray->raydiry;
 }
 
 static void	norm2(t_rayc *ray)
 {
-	if (ray->rayDirX < 0)
+	if (ray->raydirx < 0)
 	{
-		ray->stepX = -1;
-		ray->sideDistX = (ray->posX - ray->mapX) * ray->deltaDistX;
+		ray->stepx = -1;
+		ray->sidedistx = (ray->posx - ray->mapx) * ray->deltadistx;
 	}
 	else
 	{
-		ray->stepX = 1;
-		ray->sideDistX = (ray->mapX + 1.0 - ray->posX) * ray->deltaDistX;
+		ray->stepx = 1;
+		ray->sidedistx = (ray->mapx + 1.0 - ray->posx) * ray->deltadistx;
 	}
-	if (ray->rayDirY < 0)
+	if (ray->raydiry < 0)
 	{
-		ray->stepY = -1;
-		ray->sideDistY = (ray->posY - ray->mapY) * ray->deltaDistY;
+		ray->stepy = -1;
+		ray->sidedisty = (ray->posy - ray->mapy) * ray->deltadisty;
 	}
 	else
 	{
-		ray->stepY = 1;
-		ray->sideDistY = (ray->mapY + 1.0 - ray->posY) * ray->deltaDistY;
+		ray->stepy = 1;
+		ray->sidedisty = (ray->mapy + 1.0 - ray->posy) * ray->deltadisty;
 	}
 }
 
@@ -62,41 +62,41 @@ static void	norm3(t_rayc *ray, t_map *data)
 	ray->hit = 0;
 	while (ray->hit == 0)
 	{
-		if (ray->sideDistX < ray->sideDistY)
+		if (ray->sidedistx < ray->sidedisty)
 		{
-			ray->sideDistX += ray->deltaDistX;
-			ray->mapX += ray->stepX;
+			ray->sidedistx += ray->deltadistx;
+			ray->mapx += ray->stepx;
 			ray->side = 0;
 		}
 		else
 		{
-			ray->sideDistY += ray->deltaDistY;
-			ray->mapY += ray->stepY;
+			ray->sidedisty += ray->deltadisty;
+			ray->mapy += ray->stepy;
 			ray->side = 1;
 		}
-		if (data->map[coord_to_pos(ray->mapX, ray->mapY, data->nb_col)] == '1')
+		if (data->map[coord_to_pos(ray->mapx, ray->mapy, data->nb_col)] == '1')
 			ray->hit = 1;
 	}
 	if (ray->side == 0)
-		ray->perpWallDist = (ray->sideDistX - ray->deltaDistX);
+		ray->perpwalldist = (ray->sidedistx - ray->deltadistx);
 	else
-		ray->perpWallDist = (ray->sideDistY - ray->deltaDistY);
-	ray->lineHeight = (int)(HEIGHT / ray->perpWallDist);
+		ray->perpwalldist = (ray->sidedisty - ray->deltadisty);
+	ray->lineheight = (int)(HEIGHT / ray->perpwalldist);
 }
 
 static void	norm4(t_rayc *ray)
 {
-	ray->drawStart = -ray->lineHeight / 2 + HEIGHT / 2;
-	if (ray->drawStart < 0)
-		ray->drawStart = 0;
-	ray->drawEnd = ray->lineHeight / 2 + HEIGHT / 2;
-	if (ray->drawEnd >= HEIGHT)
-		ray->drawEnd = HEIGHT - 1;
+	ray->drawstart = -ray->lineheight / 2 + HEIGHT / 2;
+	if (ray->drawstart < 0)
+		ray->drawstart = 0;
+	ray->drawend = ray->lineheight / 2 + HEIGHT / 2;
+	if (ray->drawend >= HEIGHT)
+		ray->drawend = HEIGHT - 1;
 	if (ray->side == 0)
-		ray->wallX = ray->posY + ray->perpWallDist * ray->rayDirY;
+		ray->wallx = ray->posy + ray->perpwalldist * ray->raydiry;
 	else
-		ray->wallX = ray->posX + ray->perpWallDist * ray->rayDirX;
-	ray->wallX -= floor((ray->wallX));
+		ray->wallx = ray->posx + ray->perpwalldist * ray->raydirx;
+	ray->wallx -= floor((ray->wallx));
 }
 
 int	render_screen(t_mlx *mlx)

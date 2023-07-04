@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:06:48 by mjourno           #+#    #+#             */
-/*   Updated: 2023/07/04 16:02:46 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/04 17:31:28 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,27 @@ static int	constant_loop(t_mlx *mlx)
 
 static void	init_mlx_values(t_rayc *ray, t_map *data)
 {
-	ray->posX = pos_to_x(data->start_pos, data->nb_col) + 0.5;
-	ray->posY = pos_to_y(data->start_pos, data->nb_col) + 0.5;
+	ray->posx = pos_to_x(data->start_pos, data->nb_col) + 0.5;
+	ray->posy = pos_to_y(data->start_pos, data->nb_col) + 0.5;
 	if (data->start_dir == 'N')
 	{
-		ray->dirY = -1;
-		ray->planeX = 0.66;
+		ray->diry = -1;
+		ray->planex = 0.66;
 	}
 	else if (data->start_dir == 'S')
 	{
-		ray->dirY = 1;
-		ray->planeX = -0.66;
+		ray->diry = 1;
+		ray->planex = -0.66;
 	}
 	else if (data->start_dir == 'W')
 	{
-		ray->dirX = -1;
-		ray->planeY = -0.66;
+		ray->dirx = -1;
+		ray->planey = -0.66;
 	}
 	else if (data->start_dir == 'E')
 	{
-		ray->dirX = 1;
-		ray->planeY = 0.66;
+		ray->dirx = 1;
+		ray->planey = 0.66;
 	}
 }
 

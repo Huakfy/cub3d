@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:53:26 by mjourno           #+#    #+#             */
-/*   Updated: 2023/07/04 15:44:26 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/04 17:31:28 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ void	movement(int keysym, t_map *data, t_rayc *d)
 {
 	if (keysym == FRONT)
 	{
-		if (data->map[coord_to_pos(d->posX + d->dirX * MOVSTEP, d->posY, \
-		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX + d->dirX * \
-		MOVSTEP, d->posY, data->nb_col)] != ' ')
-			d->posX += d->dirX * MOVSTEP;
-		if (data->map[coord_to_pos(d->posX, d->posY + d->dirY * MOVSTEP, \
-		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX, d->posY + \
-		d->dirY * MOVSTEP, data->nb_col)] != ' ')
-			d->posY += d->dirY * MOVSTEP;
+		if (data->map[coord_to_pos(d->posx + d->dirx * MOVSTEP, d->posy, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posx + d->dirx * \
+		MOVSTEP, d->posy, data->nb_col)] != ' ')
+			d->posx += d->dirx * MOVSTEP;
+		if (data->map[coord_to_pos(d->posx, d->posy + d->diry * MOVSTEP, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posx, d->posy + \
+		d->diry * MOVSTEP, data->nb_col)] != ' ')
+			d->posy += d->diry * MOVSTEP;
 	}
 	else if (keysym == BACK)
 	{
-		if (data->map[coord_to_pos(d->posX - d->dirX * MOVSTEP, d->posY, \
-		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX - d->dirX * \
-		MOVSTEP, d->posY, data->nb_col)] != ' ')
-			d->posX -= d->dirX * MOVSTEP;
-		if (data->map[coord_to_pos(d->posX, d->posY - d->dirY * MOVSTEP, \
-		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX, d->posY - \
-		d->dirY * MOVSTEP, data->nb_col)] != ' ')
-			d->posY -= d->dirY * MOVSTEP;
+		if (data->map[coord_to_pos(d->posx - d->dirx * MOVSTEP, d->posy, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posx - d->dirx * \
+		MOVSTEP, d->posy, data->nb_col)] != ' ')
+			d->posx -= d->dirx * MOVSTEP;
+		if (data->map[coord_to_pos(d->posx, d->posy - d->diry * MOVSTEP, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posx, d->posy - \
+		d->diry * MOVSTEP, data->nb_col)] != ' ')
+			d->posy -= d->diry * MOVSTEP;
 	}
 }
 
@@ -44,25 +44,25 @@ void	movement2(int keysym, t_map *data, t_rayc *d)
 {
 	if (keysym == LEFT)
 	{
-		if (data->map[coord_to_pos(d->posX - d->planeX * MOVSTEP, d->posY, \
-		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX - d->planeX * \
-		MOVSTEP, d->posY, data->nb_col)] != ' ')
-			d->posX -= d->planeX * MOVSTEP;
-		if (data->map[coord_to_pos(d->posX, d->posY - d->planeY * MOVSTEP, \
-		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX, d->posY - \
-		d->planeY * MOVSTEP, data->nb_col)] != ' ')
-			d->posY -= d->planeY * MOVSTEP;
+		if (data->map[coord_to_pos(d->posx - d->planex * MOVSTEP, d->posy, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posx - d->planex * \
+		MOVSTEP, d->posy, data->nb_col)] != ' ')
+			d->posx -= d->planex * MOVSTEP;
+		if (data->map[coord_to_pos(d->posx, d->posy - d->planey * MOVSTEP, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posx, d->posy - \
+		d->planey * MOVSTEP, data->nb_col)] != ' ')
+			d->posy -= d->planey * MOVSTEP;
 	}
 	else if (keysym == RIGHT)
 	{
-		if (data->map[coord_to_pos(d->posX + d->planeX * MOVSTEP, d->posY, \
-		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX + d->planeX * \
-		MOVSTEP, d->posY, data->nb_col)] != ' ')
-			d->posX += d->planeX * MOVSTEP;
-		if (data->map[coord_to_pos(d->posX, d->posY + d->planeY * MOVSTEP, \
-		data->nb_col)] != '1' && data->map[coord_to_pos(d->posX, d->posY + \
-		d->planeY * MOVSTEP, data->nb_col)] != ' ')
-			d->posY += d->planeY * MOVSTEP;
+		if (data->map[coord_to_pos(d->posx + d->planex * MOVSTEP, d->posy, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posx + d->planex * \
+		MOVSTEP, d->posy, data->nb_col)] != ' ')
+			d->posx += d->planex * MOVSTEP;
+		if (data->map[coord_to_pos(d->posx, d->posy + d->planey * MOVSTEP, \
+		data->nb_col)] != '1' && data->map[coord_to_pos(d->posx, d->posy + \
+		d->planey * MOVSTEP, data->nb_col)] != ' ')
+			d->posy += d->planey * MOVSTEP;
 	}
 }
 
@@ -74,21 +74,21 @@ void	movement3(int keysym, t_rayc *d)
 
 	if (keysym == RLEFT)
 	{
-		olddirx = d->dirX;
-		oldplanex = d->planeX;
-		d->dirX = d->dirX * cos(-ROTSTEP) - d->dirY * sin(-ROTSTEP);
-		d->dirY = olddirx * sin(-ROTSTEP) + d->dirY * cos(-ROTSTEP);
-		d->planeX = d->planeX * cos(-ROTSTEP) - d->planeY * sin(-ROTSTEP);
-		d->planeY = oldplanex * sin(-ROTSTEP) + d->planeY * cos(-ROTSTEP);
+		olddirx = d->dirx;
+		oldplanex = d->planex;
+		d->dirx = d->dirx * cos(-ROTSTEP) - d->diry * sin(-ROTSTEP);
+		d->diry = olddirx * sin(-ROTSTEP) + d->diry * cos(-ROTSTEP);
+		d->planex = d->planex * cos(-ROTSTEP) - d->planey * sin(-ROTSTEP);
+		d->planey = oldplanex * sin(-ROTSTEP) + d->planey * cos(-ROTSTEP);
 	}
 	else if (keysym == RRIGHT)
 	{
-		olddirx = d->dirX;
-		oldplanex = d->planeX;
-		d->dirX = d->dirX * cos(ROTSTEP) - d->dirY * sin(ROTSTEP);
-		d->dirY = olddirx * sin(ROTSTEP) + d->dirY * cos(ROTSTEP);
-		d->planeX = d->planeX * cos(ROTSTEP) - d->planeY * sin(ROTSTEP);
-		d->planeY = oldplanex * sin(ROTSTEP) + d->planeY * cos(ROTSTEP);
+		olddirx = d->dirx;
+		oldplanex = d->planex;
+		d->dirx = d->dirx * cos(ROTSTEP) - d->diry * sin(ROTSTEP);
+		d->diry = olddirx * sin(ROTSTEP) + d->diry * cos(ROTSTEP);
+		d->planex = d->planex * cos(ROTSTEP) - d->planey * sin(ROTSTEP);
+		d->planey = oldplanex * sin(ROTSTEP) + d->planey * cos(ROTSTEP);
 	}
 }
 

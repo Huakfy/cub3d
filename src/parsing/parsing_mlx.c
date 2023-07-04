@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 00:47:43 by mjourno           #+#    #+#             */
-/*   Updated: 2023/07/04 15:54:14 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/04 17:37:07 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	get_power_ten(int nb)
 		return (1);
 }
 
-//mlx->FC[k] gets color from RGB to int
+//mlx->fc[k] gets color from RGB to int
 //return (red << 16 | green << 8 | blue);
 static int	get_fc(char *color, t_mlx *mlx, int k)
 {
@@ -66,18 +66,18 @@ static int	get_fc(char *color, t_mlx *mlx, int k)
 		if (*color == ',')
 			color += 1;
 		if (i == 0)
-			mlx->FC[k] = j << 16;
+			mlx->fc[k] = j << 16;
 		else if (i == 1)
-			mlx->FC[k] += j << 8;
+			mlx->fc[k] += j << 8;
 		else if (i == 2)
-			mlx->FC[k] += j;
+			mlx->fc[k] += j;
 	}
 	if (*color)
 		return (print_err(__FILE__, __LINE__, __func__, FLCE));
 	return (0);
 }
 
-//Get textures from xpm file to image and FC to int color
+//Get textures from xpm file to image and fc to int color
 int	get_textures(t_map *data, t_mlx *mlx)
 {
 	int		i;
