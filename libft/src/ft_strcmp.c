@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:14:59 by mjourno           #+#    #+#             */
-/*   Updated: 2023/06/23 12:24:06 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/07/05 15:03:29 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 		s1++;
 		s2++;
 	}
-
 	if (*s1 || *s2)
 		return (1);
-	return 0;
+	return (0);
 }
