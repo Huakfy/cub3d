@@ -2,7 +2,7 @@ NAME	=	cub3D
 NAME_B	=	cub3D_B
 
 CC		=	cc
-FLAG	=	-Wall -Wextra -Werror -g3
+FLAG	=	-Wall -Wextra -Werror
 
 DIRLIB	=	./libft/
 FT_FLAGS =	-Llibft -lft
